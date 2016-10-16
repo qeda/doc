@@ -1,0 +1,13 @@
+{
+  "name": "qeda-doc",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qeda/doc.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "coffee-script": "^1.11.0",
+    "marked": "^0.3.6",
+  }
+}
