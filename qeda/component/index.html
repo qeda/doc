@@ -1,0 +1,455 @@
+<!DOCTYPE html><html lang="en"><head><title>Component Description</title><link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" sizes="16x16 24x24 32x32 64x64 128x128 256x256 512x512"></head><body><div id="wrap"><div id="content"><nav><div class="container-fluid"></div><div class="navbar-header"><a class="navbar-brand" href="/"><img alt="QEDA" src="/img/logo.svg" width="60" height="60" style="margin-top: -20px"></a><div class="navbar-header visible-sm visible-xs"><button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div></div><div class="collapse navbar-collapse"><a class="navbar-brand" href="/">QEDA</a><ul class="nav nav-pills pull-right"><li><a href="/doc/">Documentation</a></li><li><a class="ext" href="https://github.com/qeda" target="_blank">Source Code</a></li><li class="active"><a href="/donate/">Donate</a></li></ul></div></nav><div class="content"><div class="pull-right toc"><ul>
+<li><strong><a href="/doc/qeda">QEDA Core</a></strong><ul>
+<li><a href="/doc/qeda/utility/">Command-line utility</a></li>
+<li><a href="/doc/qeda/component/">Component description</a></li>
+<li><a href="/doc/qeda/styling/">Styling</a></li>
+<li><a href="/doc/qeda/advanced/">Advanced customization</a></li>
+</ul>
+</li>
+</ul>
+</div><h1 id="component-description">Component description</h1>
+<p>The file that describes electronic component represents human readable <a class="ext" href="http://yaml.org/" target="_blank">YAML</a><!--_--> document. All description files should be located in <code>library</code> directory (relatively to current working directory). Path of description file inside <code>library</code> directory is pointed as parameter in <code>qeda add</code> command.</p>
+<p>For example if you add file <code>my-element.yaml</code> to <code>library</code> subdirectory you have to run in order to add it:</p>
+<pre><code class="lang-bash">qeda add my-element
+</code></pre>
+<p>If path to the new description file is <code>library/my-group/my-element.yaml</code> then command is modified to:</p>
+<pre><code class="lang-bash">qeda add my-group/my-element
+</code></pre>
+<p>If you want to create a library with the only one element (for testing purposes) you may use <code>qeda test</code> command:</p>
+<pre><code class="lang-bash">qeda test my-element
+</code></pre>
+<p>The good point of starting is to clone and examine <a href="/doc/library/">QEDA Library</a>:</p>
+<pre><code class="lang-bash">git clone https://github.com/qeda/library.git --depth 1
+</code></pre>
+<h2 id="general-description-structure">General description structure</h2>
+<p>Let&#39;s explore simple YAML definition of <a class="ext" href="https://github.com/qeda/library/blob/master/misc/tp-sm-1.yaml" target="_blank">test point</a><!--_-->.</p>
+<pre><code class="lang-yaml">name: TP-SM-1
+description: Surface Mount Test Point, 1 mm diameter
+keywords: test point
+
+schematic:
+  symbol: test-point
+
+housing:
+  pattern: test-point
+  padDiameter: 1
+</code></pre>
+<p>As we can see there are some top-level attributes as well as information about schematic symbol and land pattern.</p>
+<h2 id="parameter-types">Parameter types</h2>
+<ul>
+<li><p><em>boolean</em> &mdash; logical type, can be only <code>false</code> or <code>true</code></p>
+<p><strong>Example</strong>: <code>true</code></p>
+</li>
+<li><p><em>list</em> &mdash; comma separated list of strings or numbers (or may contain only one item without comma)</p>
+<p><strong>Example</strong>: <code>foo, bar, 10, baz</code></p>
+</li>
+<li><p><em>number</em> &mdash; numerical integer or float</p>
+<p><strong>Example</strong>: <code>1.35</code></p>
+</li>
+<li><p><em>range</em> &mdash; range of numbers</p>
+<p><strong>Example</strong>: <code>1.25-1.45</code></p>
+</li>
+<li><p><em>string</em> &mdash; line of text (may be quoted or not; quotes are recommended for numerical string in order to avoid ambiguity)</p>
+<p><strong>Example</strong>: <code>Bipolar transistor</code></p>
+</li>
+<li><p><em>structure</em> &mdash; entity that has second-level fields</p>
+<p><strong>Example</strong>:</p>
+<pre><code class="lang-yaml">struct:
+  field1: foo
+  field2: 10
+  field3: bar, baz
+  field4: 1-4
+</code></pre>
+</li>
+</ul>
+<h2 id="list-of-parameters">List of parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter name</th>
+<th>Type</th>
+<th>Requirement</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#-abstract-">abstract</a></td>
+<td>boolean</td>
+<td>optional</td>
+<td>Attribute of abstract base description that cannot be added to library itself</td>
+</tr>
+<tr>
+<td><a href="#-alias-">alias</a></td>
+<td>list</td>
+<td>optional</td>
+<td>Alternative name(s)</td>
+</tr>
+<tr>
+<td><a href="#-base-">base</a></td>
+<td>list</td>
+<td>optional</td>
+<td>Name of base element(s)</td>
+</tr>
+<tr>
+<td><a href="#-datasheet-">datasheet</a></td>
+<td>string</td>
+<td>optional</td>
+<td>URL to datasheet</td>
+</tr>
+<tr>
+<td><a href="#-description-">description</a></td>
+<td>string</td>
+<td>optional</td>
+<td>Detailed description</td>
+</tr>
+<tr>
+<td><a href="#-groups-">groups</a></td>
+<td>structure</td>
+<td>optional</td>
+<td>Pin groups</td>
+</tr>
+<tr>
+<td><a href="#-housing-">housing</a></td>
+<td>structure</td>
+<td><strong>required</strong></td>
+<td>Land pattern parameters</td>
+</tr>
+<tr>
+<td><a href="#-joint-">joint</a></td>
+<td>structure</td>
+<td>optional</td>
+<td>Join symbol for composite pin names</td>
+</tr>
+<tr>
+<td><a href="#-keywords-">keywords</a></td>
+<td>list</td>
+<td>optional</td>
+<td>Keywords</td>
+</tr>
+<tr>
+<td><a href="#-name-">name</a></td>
+<td>string</td>
+<td><strong>required</strong></td>
+<td>Element name</td>
+</tr>
+<tr>
+<td><a href="#-parts-">parts</a></td>
+<td>structure</td>
+<td>optional</td>
+<td>Part list (for multi-part symbols)</td>
+</tr>
+<tr>
+<td><a href="#-pinout-">pinout</a></td>
+<td>structure</td>
+<td>optional</td>
+<td>Pin assignment</td>
+</tr>
+<tr>
+<td><a href="#-properties-">properties</a></td>
+<td>structure</td>
+<td>optional</td>
+<td>Pin properties</td>
+</tr>
+<tr>
+<td><a href="#-schematic-">schematic</a></td>
+<td>structure</td>
+<td><strong>required</strong></td>
+<td>Schematic symbol parameters</td>
+</tr>
+<tr>
+<td><a href="#-suffix-">suffix</a></td>
+<td>list</td>
+<td>optional</td>
+<td>Name postfix(es)</td>
+</tr>
+<tr>
+<td><a href="#-variations-">variations</a></td>
+<td>list</td>
+<td>optional</td>
+<td>List of possible variations described in separate files</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-abstract-"><code>abstract</code></h2>
+<p>Abstract description may be used only as base for other description. It is useful when several components share common parameters. Abstract component can not be added to library.</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/maxim/max607x.yaml" target="_blank">Maxim MAX607x</a><!--_-->:</p>
+<pre><code class="lang-yaml">abstract: true
+</code></pre>
+<p><strong>See also</strong>: <a href="#-base-">base</a></p>
+<h2 id="-alias-"><code>alias</code></h2>
+<p>Alternative name (or names) of component. Creates separate record (records) in output library.</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/ti/lm1117mpx.yaml" target="_blank">TI LM1117MPX</a><!--_-->:</p>
+<pre><code class="lang-yaml">name: LM1117MPX
+alias: LM1117IMPX
+</code></pre>
+<p><strong>See also</strong>: <a href="#-name-">name</a>, <a href="#-suffix-">suffix</a></p>
+<h2 id="-base-"><code>base</code></h2>
+<p>This directive allows to include parameters from other descriptions. Base description can be located in the same directory with component description (pointed by name without <code>.yaml</code> extension) as well as in other directory within <code>library</code> (pointed as <code>&lt;dir&gt;/&lt;YAML name&gt;</code>). Value is case insensitive.</p>
+<p>One may override parameters defined in base description and add other parameters.</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/maxim/max6070.yaml" target="_blank">Maxim MAX6070</a><!--_-->:</p>
+<pre><code class="lang-yaml">base: MAX607x
+</code></pre>
+<p><strong>See also</strong>: <a href="#-abstract-">abstract</a></p>
+<h2 id="-datasheet-"><code>datasheet</code></h2>
+<p>Link to the datasheet.</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/ti/opa335.yaml" target="_blank">TI OPA335</a><!--_-->:</p>
+<pre><code class="lang-yaml">datasheet: http://www.ti.com/lit/ds/symlink/opa335.pdf
+</code></pre>
+<h2 id="-description-"><code>description</code></h2>
+<p>Short text description of electronic component.</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/atmega8.yaml" target="_blank">Atmel ATmega8A</a><!--_-->:</p>
+<pre><code class="lang-yaml">description: 8-bit AVR Microcontroller
+</code></pre>
+<h2 id="-groups-"><code>groups</code></h2>
+<p>There are two possible ways to combine pins into the groups. One of them is using <a href="#-pinout-">pinout</a> hierarchy. Another one is by virtue of <code>groups</code> structure.</p>
+<p>Structure format:</p>
+<pre><code class="lang-yaml">groups:
+  &lt;group name&gt;: &lt;pin name 1&gt; [,  &lt;pin name 2&gt; ...] | &lt;pin range&gt;
+</code></pre>
+<p>It is useful to prefer this way over <a href="#-pinout-">pinout</a> hierarchy in case of using several variations:</p>
+<pre><code class="lang-yaml">variations: QFP, BGA
+
+pinout@QFP:
+  A: 1
+  B: 2
+
+pinout@BGA:
+  A: G1
+  B: D4
+  C: F8
+
+groups:
+  DATA: A, B, C
+</code></pre>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/ti/iso72x.yaml" target="_blank">TI ISO72x</a><!--_-->:</p>
+<pre><code class="lang-yaml">groups:
+  DATA1: IN
+  DATA2: OUT, ~EN
+  POWER1: Vcc1, GND1
+  POWER2: Vcc2, GND2
+</code></pre>
+<p><strong>See also</strong>: <a href="#-pinout-">pinout</a></p>
+<h2 id="-housing-"><code>housing</code></h2>
+<p>One of the three <strong>required</strong> parameters.</p>
+<p>This entry is responsible for land pattern generation.</p>
+<p>Structure format:</p>
+<pre><code class="lang-yaml">housing:
+  suffix: &lt;optional suffix&gt;
+  units: mm | inches # &#39;mm&#39; by default
+  pattern: &lt;pattern handler script name&gt;
+  # or
+  outline: &lt;outline qualified name&gt;
+  ... # pattern dependent parameters
+</code></pre>
+<p><code>pattern</code> value is a base name of script which is responsible for land pattern generation. For example <code>pattern: QFP</code> will run <a class="ext" href="https://github.com/qeda/qeda/blob/master/src/pattern/default/qfp.coffee" target="_blank">pattern/default/qfp.coffee</a><!--_--> script in order to generate QFP land pattern. If <a href="/doc/qeda/styling/">style</a> is not <code>default</code> then pattern generator script will be searched in <code>pattern/&lt;style&gt;/</code> directory.</p>
+<p>One may use his own generator written on CoffeeScript or JavaScript placed in local <code>pattern</code> directory. For <code>./pattern/my-generator.js</code> script one should point:</p>
+<pre><code class="lang-yaml">housing:
+  pattern: my-generator
+</code></pre>
+<p>Alternative way to specify land pattern generator is to point standard <code>outline</code> which cause parameters to be borrowed from corresponding outline description. For example <code>outline: JEDEC MS-026 AEB</code> setting will load housing parameters from <a class="ext" href="https://github.com/qeda/qeda/blob/master/share/outline/jedec/ms-026.yaml" target="_blank">share/outline/jedec/ms-026.yaml</a><!--_--> description (<code>AEB</code> will be matched to corresponding sections inside YAML-outline).</p>
+<p>Please refer to <a href="/doc/patterns/">particular pattern documentation</a> for detailed information about pattern dependent parameters.</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/resistor/r0603.yaml" target="_blank">Resistor R0603</a><!--_-->:</p>
+<pre><code class="lang-yaml">housing:
+  pattern: chip
+  bodyLength: 1.5-1.7
+  bodyWidth: 0.7-0.9
+  height: 0.35-0.55
+  leadLength: 0.15-0.45
+</code></pre>
+<h2 id="-joint-"><code>joint</code></h2>
+<p>This parameter is for group name concatenation with pin name separated by delimiter character.</p>
+<p>Structure format:</p>
+<pre><code class="lang-yaml">joint:
+  &lt;group name&gt;: &lt;delimiter character&gt;
+</code></pre>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/altera/10m50sce144.yaml" target="_blank">Altera 10M50SCE144</a><!--_-->:</p>
+<pre><code class="lang-yaml">pinout:
+  DIFF:
+    L1n: 6
+    L1p: 7
+
+joint:
+  DIFF: &#39;_&#39;
+</code></pre>
+<p>This definition is equivalent to following:</p>
+<pre><code class="lang-yaml">pinout:
+  DIFF:
+    DIFF_L1n: 6
+    DIFF_L1p: 7
+</code></pre>
+<h2 id="-keywords-"><code>keywords</code></h2>
+<p>Keywords related to the electronic component. May be used by <a href="/doc/qeda/styling/">custom style handlers</a> for extra information about element.</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/ata6670.yaml" target="_blank">Atmel ATA6670</a><!--_-->:</p>
+<pre><code class="lang-yaml">keywords: IC, Digital, Transceiver
+</code></pre>
+<h2 id="-name-"><code>name</code></h2>
+<p>One of the three <strong>required</strong> parameters.</p>
+<p>Unique name of electronic component. This is key which element is identified in library by.</p>
+<p>This is a good practice to make combination of name and <a href="#-suffix-">suffix</a> to be most similar to ordering part number (except tape and reel package options, Pb-free version etc.).</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/atmega128.yaml" target="_blank">Atmel ATmega128</a><!--_-->:</p>
+<pre><code class="lang-yaml">name: ATmega128
+</code></pre>
+<p><strong>See also</strong>: <a href="#-alias-">alias</a>, <a href="#-suffix-">suffix</a></p>
+<h2 id="-parts-"><code>parts</code></h2>
+<p>This parameter is needed for multi-part schematic symbols.</p>
+<p>Structure format:</p>
+<pre><code class="lang-yaml">parts:
+  &lt;part name&gt;: &lt;pin name 1&gt; [,  &lt;pin name 2&gt; ...] | &lt;pin range&gt;
+  &lt;part name&gt;: &lt;pin group name 1&gt; [,  &lt;pin group name 2&gt; ...] | &lt;pin group range&gt;
+</code></pre>
+<p>Each entry with <code>part name</code> defines separate schematic symbol which incorporates pins (and/or pin groups) specified.</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/ti/tms320f28374dptp.yaml" target="_blank">TI TMS320F28374DPTP</a><!--_-->:</p>
+<pre><code class="lang-yaml">parts:
+  GPIO: GPIO
+  ADC: VREFA, ADCA, VREFB, ADCB, VREFC, ADCC, VREFD, ADCD, ADC
+  CONTROL: RESET, CLOCK, JTAG, VREGENZ, ERRORSTS, FILTER
+  POWER: VDD, VDD3VFL, VDDA, VDDIO, VDDOSC, VSS, VSSOSC, VSSA
+</code></pre>
+<h2 id="-pinout-"><code>pinout</code></h2>
+<p>One of the central structures of component description. It defines component&#39;s pinout.</p>
+<p>Structure format:</p>
+<pre><code class="lang-yaml">pinout:
+  &lt;pin name&gt;: &lt;pin number 1&gt; [, &lt;pin number 2&gt; ...]
+  &lt;pin name 1&gt;, &lt;pin name 2&gt;: &lt;pin number 1&gt; , &lt;pin number 2&gt;
+  &lt;pin name from&gt;-&lt;pin name to&gt;: &lt;pin number from&gt;-&lt;pin number to&gt;
+  &lt;pin group name&gt;:
+    &lt;pin name 1&gt;: &lt;pin number&gt; [...]
+    &lt;pin name 2&gt;: &lt;pin number&gt; [...]
+</code></pre>
+<p><strong>Important</strong>: Pin names as well as pin group names should be unique.</p>
+<p>Pin numbers may be defined as comma separated list, range or combination of them.</p>
+<pre><code class="lang-yaml">pinout:
+  DATA: 1, 3-6, 10
+</code></pre>
+<p>Pin numbers may contain letters (for BGA packages):</p>
+<pre><code class="lang-yaml">pinout:
+  GND: B1, C10-C13, AA1-AC3
+</code></pre>
+<p>Several pins may be combined in group:</p>
+<pre><code class="lang-yaml">pinout:
+  SPI:
+    CS: 1
+    CLK: 2
+    MOSI: 3
+    MISO: 4
+</code></pre>
+<p>Pin names are also allowed to be combined. They will be converted to list automatically (its size should be equal to pin number list size on the right side).</p>
+<pre><code class="lang-yaml">pinout:
+  D16-0, CLK: 1-18
+</code></pre>
+<p>This will produce pins <code>D16</code> (pin number <code>1</code>), <code>D15</code> (<code>2</code>), <code>D14</code> (<code>3</code>) ... <code>D0</code>(<code>17</code>), <code>CLK</code> (<code>18</code>).</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/atmega8.yaml" target="_blank">Atmel ATmega8</a><!--_-->:</p>
+<pre><code class="lang-yaml">pinout:
+  PORTB:
+    PB0-7: 12-17, 7, 8
+  PORTC:
+    PC0-6: 23-29
+  PORTD:
+    PD0-7: 30-32, 1, 2, 9-11
+  ADC6: 19
+  ADC7: 22
+
+  AREF: 20
+  VCC: 4, 6
+  AVCC: 18
+  GND: 3, 5, 21
+</code></pre>
+<p><strong>See also</strong>: <a href="#-groups-">groups</a></p>
+<h2 id="-properties-"><code>properties</code></h2>
+<p>Electrical properties of elements pins.</p>
+<p>Structure format:</p>
+<pre><code class="lang-yaml">properties:
+  &lt;property&gt;: &lt;pin name 1&gt; [, &lt;pin number 2&gt; ...] | &lt;pin range&gt;
+  &lt;property&gt;: &lt;pin group name 1&gt; [, &lt;pin group name 2&gt; ...] | &lt;pin group range&gt;
+</code></pre>
+<p>If pin group pointed then each pin of this group will have property specified.</p>
+<p>Available properties:</p>
+<ul>
+<li><code>analog</code> &mdash; analog pin (e.g. <code>AIN</code>)</li>
+<li><code>bidir</code> &mdash; bidirectional digital pin (e.g. <code>GPIO</code>)</li>
+<li><code>ground</code> &mdash; ground pin (e.g. <code>GND</code>)</li>
+<li><code>in</code> &mdash; input pin (e.g. <code>CE</code>, <code>VIN</code>)</li>
+<li><code>inverted</code> &mdash; inverted pin (e.g. <code>~RESET</code>)</li>
+<li><code>nc</code>  &mdash; not connected pin (e.g. <code>NC</code>)</li>
+<li><code>out</code> &mdash; output pin (e.g. <code>SCLK</code>, <code>VOUT</code>)</li>
+<li><code>passive</code> &mdash; passive pin (e.g. <code>XTAL</code>)</li>
+<li><code>power</code> &mdash; passive pin (e.g. <code>VDD</code>)</li>
+<li><code>z</code> &mdash; high-impedance pin</li>
+</ul>
+<p>Some signals may have multiple properties:</p>
+<pre><code class="lang-yaml">properties:
+  in: ~RESET, VIN
+  out: VOUT
+  power: VIN, VOUT
+  inverted: ~RESET
+</code></pre>
+<p><code>VIN</code> is voltage input, <code>VOUT</code> is voltage output, <code>~RESET</code> is inverted digital input.</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/cypress/cy15b102q.yaml" target="_blank">Cypress CY15B102Q</a><!--_-->:</p>
+<pre><code class="lang-yaml">properties:
+  in: ~WP, ~CS, ~HOLD, SCK, SI
+  out: SO
+  power: VDD
+  ground: VSS
+  inverted: ~WP, ~CS, ~HOLD
+</code></pre>
+<h2 id="-schematic-"><code>schematic</code></h2>
+<p>One of the three <strong>required</strong> parameters.</p>
+<p>This section describes schematic symbol generation parameters.</p>
+<p>Structure format:</p>
+<pre><code class="lang-yaml">schematic:
+  symbol: &lt;symbol handler script name&gt;
+  ... # symbol dependent parameters
+</code></pre>
+<p><code>symbol</code> value is a base name of script which is responsible for schematic symbol generation. For example <code>symbol: IC</code> will run <a class="ext" href="https://github.com/qeda/qeda/blob/master/src/symbol/default/ic.coffee" target="_blank">symbol/default/ic.coffee</a><!--_--> script in order to generate integrated circuit schematic symbol. If style is not default then symbol generator script will be searched in <code>symbol/&lt;style&gt;/</code> directory (see <a class="ext" href="https://github.com/qeda/qeda/tree/master/src/symbol/gost" target="_blank">GOST style</a><!--_--> for example).</p>
+<p>One may use his own generator written on CoffeeScript or JavaScript placed in local <code>symbol</code> directory. For <code>./symbol/my-generator.js</code> script one should point:</p>
+<pre><code class="lang-yaml">schematic:
+  symbol: my-generator
+</code></pre>
+<p>Please refer to <a href="/doc/symbols/">particular symbol documentation</a> for detailed information about symbol dependent parameters.</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/infineon/kp235.yaml" target="_blank">Infineon KP235</a><!--_-->:</p>
+<pre><code class="lang-yaml">schematic:
+  symbol: IC
+  left: SERIAL
+  right: VOUT, TEST
+  top: VDD
+  bottom: GND
+</code></pre>
+<h2 id="-suffix-"><code>suffix</code></h2>
+<p>One or multiple optional postfixes for component&#39;s aliases.</p>
+<p>For example:</p>
+<pre><code class="lang-yaml">name: COMP
+suffix: -A, -B, -C
+</code></pre>
+<p>will produce library element with name <code>COMP</code> and three aliases with names <code>COMP-A</code>, <code>COMP-B</code>, <code>COMP-C</code>.</p>
+<p>This suffix is placed after <code>housing</code>&#39;s <code>suffix</code> (if any).</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/maxim/max1735.yaml" target="_blank">Maxim MAX1735</a><!--_-->:</p>
+<pre><code class="lang-yaml">suffix: EUK50-T, EUK30-T, EUK25-T
+</code></pre>
+<p><strong>See also</strong>: <a href="#-alias-">alias</a>, <a href="#-name-">name</a></p>
+<h2 id="-variations-"><code>variations</code></h2>
+<p>Some electronic components may be presented in several variations. For example the same integrated circuit may exist in various packages.</p>
+<p>Variations are itemized as comma separated list:</p>
+<pre><code class="lang-yaml">variations: &lt;variation 1&gt; [, &lt;variation 2&gt; ...]
+</code></pre>
+<p>Any top-level parameter may be specified only for one variation by using <code>@</code> character:</p>
+<pre><code class="lang-yaml">datasheet@&lt;variation&gt;: ...
+
+pinout@&lt;variation&gt;:
+  ...
+
+housing@&lt;variation&gt;:
+  ...
+</code></pre>
+<p>Thus one may add to library only one variation instead of all of them:</p>
+<pre><code class="lang-bash">qeda add group/component@variation
+</code></pre>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/ti/sn74lvc1g07.yaml" target="_blank">TI SN74LVC1G07</a><!--_-->:</p>
+<pre><code class="lang-yaml">variations: SOT-23, SC70, SOT, SON1, SON2, DSBGA-6, DSBGA-4
+</code></pre>
+</div></div><div id="push"></div></div><div id="footer-wrapper"><footer class="footer"><div class="container"><div class="row"><div class="col-md-8"><p>Copyright &copy; 2015&ndash;2016 QEDA Authors</p><p>Powered by&nbsp;<a href="http://noviga.com/" target="_blank"><img src="/img/noviga.png" height="30"></a></p></div><div class="col-md-1"><a class="cap" href="/">Home</a></div><div class="col-md-1"><a class="cap" href="/doc/">Doc</a></div><div class="col-md-1"><a class="cap ext" href="https://github.com/qeda" target="_blank">Source</a></div><div class="col-md-1"><a class="cap" href="/donate/">Donate</a></div></div></div></footer></div></body><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous"><link href="/css/qeda.css" rel="stylesheet"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-83212017-1', 'auto');
+ga('send', 'pageview');</script></html>

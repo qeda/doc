@@ -1,0 +1,144 @@
+<!DOCTYPE html><html lang="en"><head><title>BGA Land Pattern</title><link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" sizes="16x16 24x24 32x32 64x64 128x128 256x256 512x512"></head><body><div id="wrap"><div id="content"><nav><div class="container-fluid"></div><div class="navbar-header"><a class="navbar-brand" href="/"><img alt="QEDA" src="/img/logo.svg" width="60" height="60" style="margin-top: -20px"></a><div class="navbar-header visible-sm visible-xs"><button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div></div><div class="collapse navbar-collapse"><a class="navbar-brand" href="/">QEDA</a><ul class="nav nav-pills pull-right"><li><a href="/doc/">Documentation</a></li><li><a class="ext" href="https://github.com/qeda" target="_blank">Source Code</a></li><li class="active"><a href="/donate/">Donate</a></li></ul></div></nav><div class="content"><div class="pull-right toc"><ul>
+<li><strong><a href="/doc/patterns/">List of supported land patterns</a></strong><ul>
+<li><a href="/doc/patterns/bga/">Ball grid array (BGA)</a></li>
+<li><a href="/doc/patterns/cae/">Capacitor, Aluminum Electrolytic (CAE)</a></li>
+<li>Ceramic flat pack (CFP)</li>
+<li>CGA</li>
+<li>Chip</li>
+<li>Chip Array</li>
+<li>CQFP</li>
+<li>Crystal</li>
+<li>Custom</li>
+<li>DIP</li>
+<li>LGA</li>
+<li>MELF</li>
+<li>Molded</li>
+<li>Mounting Hole</li>
+<li>Oscillator</li>
+<li>PAK</li>
+<li>QFN</li>
+<li>QFP</li>
+<li>Radial</li>
+<li>SOD</li>
+<li>SODFL</li>
+<li>SOIC</li>
+<li>SOJ</li>
+<li>SOL</li>
+<li>SON</li>
+<li>SOP</li>
+<li>SOT143</li>
+<li>SOT223</li>
+<li>SOT23</li>
+<li>SOTFL</li>
+<li>Test Point</li>
+</ul>
+</li>
+</ul>
+</div><h1 id="ball-grid-array-bga-land-pattern">Ball Grid Array (BGA) land pattern</h1>
+<pre><code class="lang-yaml">housing:
+  pattern: BGA
+</code></pre>
+<center><img src="/img/doc/patterns/bga.svg" width="60%" alt="BGA Package"></center>
+
+<h2 id="required-parameters">Required parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bodyLength</code></td>
+<td>dimension</td>
+<td>Package body length (key position in top left)</td>
+</tr>
+<tr>
+<td><code>bodyWidth</code></td>
+<td>dimension</td>
+<td>Package body width (key position in top left)</td>
+</tr>
+<tr>
+<td><code>columnCount</code></td>
+<td>integer</td>
+<td>Count of columns</td>
+</tr>
+<tr>
+<td><code>columnPitch</code></td>
+<td>float</td>
+<td>Pitch between columns.<br/>Not needed if <code>pitch</code> parameter defined</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td>dimension</td>
+<td>Overall package height</td>
+</tr>
+<tr>
+<td><code>leadDiameter</code></td>
+<td>dimension</td>
+<td>Diameter of lead (ball)</td>
+</tr>
+<tr>
+<td><code>pitch</code></td>
+<td>float</td>
+<td>Pitch between leads (when equal for rows and columns).<br/>Not needed if both <code>columnPitch</code> and <code>rowPitch</code> parameters defined</td>
+</tr>
+<tr>
+<td><code>rowCount</code></td>
+<td>integer</td>
+<td>Count of rows</td>
+</tr>
+<tr>
+<td><code>rowPitch</code></td>
+<td>float</td>
+<td>Pitch between rows.<br/>Not needed if <code>pitch</code> parameter defined</td>
+</tr>
+</tbody>
+</table>
+<h2 id="optional-parameters">Optional parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>leadCount</code></td>
+<td>integer</td>
+<td>Actual lead count</td>
+</tr>
+<tr>
+<td><code>padDiameter</code></td>
+<td>float</td>
+<td>Diameter of pad recommended by component manufacturer</td>
+</tr>
+</tbody>
+</table>
+<h2 id="available-outlines">Available outlines</h2>
+<ul>
+<li><code>JEDEC MO-211</code></li>
+</ul>
+<h2 id="real-example">Real example</h2>
+<p><a class="ext" href="https://github.com/qeda/library/blob/master/analog/ad9393.yaml" target="_blank">Analog Devices AD9393</a><!--_-->:</p>
+<pre><code class="lang-yaml">housing:
+  pattern: BGA
+  bodyWidth: 5.90-6.10
+  bodyLength: 5.90-6.10
+  height: 1.40
+  pitch: 0.5
+  rowCount: 10
+  columnCount: 10
+  leadDiameter: 0.25-0.35
+  leadCount: 76
+</code></pre>
+</div></div><div id="push"></div></div><div id="footer-wrapper"><footer class="footer"><div class="container"><div class="row"><div class="col-md-8"><p>Copyright &copy; 2015&ndash;2016 QEDA Authors</p><p>Powered by&nbsp;<a href="http://noviga.com/" target="_blank"><img src="/img/noviga.png" height="30"></a></p></div><div class="col-md-1"><a class="cap" href="/">Home</a></div><div class="col-md-1"><a class="cap" href="/doc/">Doc</a></div><div class="col-md-1"><a class="cap ext" href="https://github.com/qeda" target="_blank">Source</a></div><div class="col-md-1"><a class="cap" href="/donate/">Donate</a></div></div></div></footer></div></body><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous"><link href="/css/qeda.css" rel="stylesheet"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-83212017-1', 'auto');
+ga('send', 'pageview');</script></html>
