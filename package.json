@@ -5,9 +5,10 @@
     "type": "git",
     "url": "git+https://github.com/qeda/doc.git"
   },
-  "license": "MIT",
-  "devDependencies": {
+  "license": "CC-BY-4.0",
+  "dependencies": {
     "coffee-script": "^1.11.0",
     "marked": "^0.3.6",
+    "pug": "^2.0.0-beta6"
   }
 }

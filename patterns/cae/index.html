@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="en"><head><title>Title</title><link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" sizes="16x16 24x24 32x32 64x64 128x128 256x256 512x512"></head><body>TOC<hr><h1 id="capacitor-aluminum-electrolytic-cae-land-pattern">Capacitor, Aluminum Electrolytic (CAE) land pattern</h1>
+<pre><code class="lang-yaml">housing:
+  pattern: CAE
+</code></pre>
+<!--<center><img src="/img/doc/patterns/cae.svg" width="60%" alt="CAE Package"></center>-->
+<h2 id="required-parameters">Required parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bodyDiameter</code></td>
+<td>dimension</td>
+<td>Body cylinder diameter</td>
+</tr>
+<tr>
+<td><code>bodyLength</code></td>
+<td>dimension</td>
+<td>Package base length (key position at top)</td>
+</tr>
+<tr>
+<td><code>bodyWidth</code></td>
+<td>dimension</td>
+<td>Package base width (key position at top)</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td>dimension</td>
+<td>Overall package height</td>
+</tr>
+<tr>
+<td><code>leadLength</code></td>
+<td>dimension</td>
+<td>Length of lead</td>
+</tr>
+<tr>
+<td><code>leadSpace</code></td>
+<td>dimension</td>
+<td>Space between leads</td>
+</tr>
+<tr>
+<td><code>leadWidth</code></td>
+<td>dimension</td>
+<td>Width of lead</td>
+</tr>
+</tbody>
+</table>
+<h2 id="optional-parameters">Optional parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>padDistance</code></td>
+<td>float</td>
+<td>Distance between pad centers recommended by component manufacturer.<br/>Not needed if <code>padSpace</code> or <code>padSpan</code> parameter defined</td>
+</tr>
+<tr>
+<td><code>padHeight</code></td>
+<td>float</td>
+<td>Width of pad recommended by component manufacturer</td>
+</tr>
+<tr>
+<td><code>padSpan</code></td>
+<td>float</td>
+<td>Distance between opposite pad edges recommended by component manufacturer.<br/>Not needed if <code>padDistance</code> or <code>padSpace</code> parameter defined</td>
+</tr>
+<tr>
+<td><code>padSpace</code></td>
+<td>float</td>
+<td>Space between pads recommended by component manufacturer.<br/>Not needed if <code>padDistance</code> or <code>padSpan</code> parameter defined</td>
+</tr>
+<tr>
+<td><code>padWidth</code></td>
+<td>float</td>
+<td>Width of pad recommended by component manufacturer</td>
+</tr>
+</tbody>
+</table>
+<h2 id="real-example">Real example</h2>
+<p><a class="ext" href="https://github.com/qeda/library/blob/master/capacitor/cae-a.yaml" target="_blank">Capacitor CAE-A</a><!--_-->:</p>
+<pre><code class="lang-yaml">housing:
+  pattern: CAE
+  bodyDiameter: 2.5-3.5
+  bodyLength: 3.1-3.5
+  bodyWidth: 3.1-3.5
+  height: 5.2-5.5
+  leadWidth: 0.45-0.65
+  leadLength: 1.3-1.7
+  leadSpace: 0.4-0.8
+</code></pre>
+</body></html>

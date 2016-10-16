@@ -1,0 +1,402 @@
+<!DOCTYPE html><html lang="en"><head><title>Title</title><link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" sizes="16x16 24x24 32x32 64x64 128x128 256x256 512x512"></head><body>TOC<hr><h1 id="command-line-utility">Command-line utility</h1>
+<p>QEDA command line utility is installed by using NPM:</p>
+<pre><code class="lang-bash">sudo npm install -g qeda
+</code></pre>
+<p>Run in order to list all available commands:</p>
+<pre><code class="lang-bash">qeda --help
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><nobr><a href="#-add-">add</a> <em>COMPONENT</em></nobr></td>
+<td>Add component definition to configuration file (with preloading from <a href="/doc/library">remote repository</a> if necessary)</td>
+<td><nobr><code>qeda add ti/iso721</code></nobr></td>
+</tr>
+<tr>
+<td><a href="#-completion-">completion</a></td>
+<td>Display completion script</td>
+<td><nobr><code>source &lt;(qeda completion)</code></nobr></td>
+</tr>
+<tr>
+<td><nobr><a href="#-config-">config</a> <em>PARAM</em> [<em>VALUE</em>]</nobr></td>
+<td>Set/get configuration parameter (see <a href="#parameters-list">Parameters list</a>)</td>
+<td><nobr><code>qeda config output kicad</code></nobr></td>
+</tr>
+<tr>
+<td><nobr><a href="#-generate-">generate</a> <em>LIBRARY</em></nobr></td>
+<td>Generate libraries for EDA according to configuration file</td>
+<td><nobr><code>qeda generate mylib</code></nobr></td>
+</tr>
+<tr>
+<td><nobr><a href="#-ground-">ground</a> <em>NET</em></nobr></td>
+<td>Add ground symbol to configuration file</td>
+<td><nobr><code>qeda ground GND_DC</code></nobr></td>
+</tr>
+<tr>
+<td><nobr><a href="#-load-">load</a> <em>COMPONENT</em></nobr></td>
+<td>Load component description from <a href="/doc/library">remote repository</a> and caching to <code>library</code> subdirectory (without adding to configuration file)</td>
+<td><nobr><code>qeda load ti/iso721</code></nobr></td>
+</tr>
+<tr>
+<td><nobr><a href="#-power-">power</a> <em>NET</em></nobr></td>
+<td>Add power supply symbol to configuration file</td>
+<td><code>qeda power +5V_DC</code></td>
+</tr>
+<tr>
+<td><a href="#-reset-">reset</a></td>
+<td>Delete current configuration file (use with attention!)</td>
+<td><nobr><code>qeda reset</code></nobr></td>
+</tr>
+<tr>
+<td><a href="#-sort-">sort</a></td>
+<td>Sort components and nets in configuration file alphabetically</td>
+<td><nobr><code>qeda sort</code></nobr></td>
+</tr>
+<tr>
+<td><nobr><a href="#-test-">test</a> <em>COMPONENT</em></nobr></td>
+<td>Generate test library with one component only (does not affect current configuration file but can load some parameters from it)</td>
+<td><nobr><code>qeda test ti/iso721</code></nobr></td>
+</tr>
+</tbody>
+</table>
+<p>All configuration parameters and list of added components are saved in <code>.qeda.yaml</code> configuration file which is created by the utility. It is a good idea to add this file to your source version control system.</p>
+<h2 id="-add-"><code>add</code></h2>
+<p>Firstly this command looks for <em>COMPONENT</em>&#39;s YAML-description in <code>library</code> directory (relatively to current working directory). In case of its absence utility tries to download correspondent description from <a href="/doc/library/">remote repository</a>. Successful downloading leads to caching this description file in <code>library</code> directory and add corresponding record to <code>.qeda.yaml</code> configuration file. When called for the second time, utility will use cached file instead of loading it from Internet.</p>
+<p>If there is no appropriate description file in local <code>library</code> directory nor in remote library, utility will return an error.</p>
+<p>Some components may be presented in several <a href="/doc/qeda/component/#-variations-">variations</a>. In order to add only one variation to library you need to point this variation after <code>@</code> character:</p>
+<pre><code>qeda add ti/sn74lvc1g07@sot-23
+</code></pre><p><strong>See also</strong>: <a href="#-load-">load</a></p>
+<h2 id="-completion-"><code>completion</code></h2>
+<p>Generate completion script for shell and output it to stdout. Depending on Linux distribution one may save this script to system directory:</p>
+<pre><code class="lang-bash">qeda completion | sudo tee /usr/local/etc/bash_completion.d/qeda
+# or
+qeda completion | sudo tee /etc/bash_completion.d/qeda
+</code></pre>
+<h2 id="-config-"><code>config</code></h2>
+<p>This command allow to tune individual configuration parameters of future library of electronic components (see <a href="#parameters-list">Parameters list</a>). To set <em>PARAM</em> you need to provide <em>VALUE</em> as second argument to command. To check the parameter set one should omit the <em>VALUE</em> argument.</p>
+<h2 id="-generate-"><code>generate</code></h2>
+<p>The final command which generates a library of electronic components according to settings found in <code>.qeda.yaml</code> configuration file.</p>
+<h2 id="-ground-"><code>ground</code></h2>
+<p>Add global ground symbol. There are three optional prefixes for ground net name:</p>
+<ul>
+<li><code>signal</code></li>
+<li><code>chassis</code></li>
+<li><code>earth</code></li>
+</ul>
+<pre><code class="lang-bash">qeda ground GND
+qeda ground signal/GNDS
+qeda ground chassis/GNDC
+qeda ground earth/GNDE
+</code></pre>
+<center><img src="/img/doc/ground.png" width="300" height="80" alt="Ground Symbols"></center>
+
+<p><strong>See also</strong>: <a href="#-power-">power</a></p>
+<h2 id="-load-"><code>load</code></h2>
+<p>This command loads and caches component description from <a href="/doc/library">remote repository</a> regardless of its existence in <code>library</code> directory <strong>without</strong> adding to configuration file.</p>
+<p><strong>See also</strong>: <a href="#-add-">add</a></p>
+<h2 id="-power-"><code>power</code></h2>
+<p>Add global power symbol.</p>
+<p><strong>See also</strong>: <a href="#-ground-">ground</a></p>
+<h2 id="-reset-"><code>reset</code></h2>
+<p>This command completely deletes <code>.qeda.yaml</code> configuration file. It is good idea to use it after some experiments before creating release library.</p>
+<p><strong>Use this command with caution because it can erase all your work.</strong></p>
+<h2 id="-sort-"><code>sort</code></h2>
+<p>This command sorts components and nets in <code>.qeda.yaml</code> configuration file in alphabetical order. This may be useful if you wish to edit this file manually in future. But sorting after starting schematic design may cause some direct annotation issues due to land pattern naming sequence.</p>
+<p><strong>It is strongly recommended to use this command only before starting schematic design.</strong></p>
+<h2 id="-test-"><code>test</code></h2>
+<p>This command will produce a library with the only <em>COMPONENT</em>. The purpose of this command is to check look and integrity of electronic component. Library will be named <code>test_&lt;conponent&gt;</code>.</p>
+<p>This command does not use components list from <code>.qeda.yaml</code> configuration file nor affects it in any manner. But other parameters set by <a href="#-config-">config</a> command are taken into account during library generation.</p>
+<h2 id="parameters-list">Parameters list</h2>
+<p>General parameters:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><nobr><code>connection.timeout</code></nobr></td>
+<td>integer (ms)</td>
+<td>5000</td>
+<td>Maximum connection timeout for component description loading from <a href="/doc/library">remote repository</a></td>
+</tr>
+<tr>
+<td><code>output</code></td>
+<td>string</td>
+<td>&#39;kicad&#39;</td>
+<td>Output library format. The only option supported at the moment is <code>&#39;kicad&#39;</code></td>
+</tr>
+</tbody>
+</table>
+<p>Schematic symbol related parameters:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><nobr><code>symbol.gridSize</code></nobr></td>
+<td>float (mm)</td>
+<td>2.5</td>
+<td>Grid cell size.</td>
+</tr>
+<tr>
+<td><nobr><code>symbol.fill</code></nobr></td>
+<td>string</td>
+<td>&#39;foreground&#39;</td>
+<td>Symbol contour filling type. <br/>Options: <code>foreground</code>, <code>background</code>, <code>none</code><br/> <center><img src="/img/doc/fill.png" width="330" height="90" alt="Filling Options"></center></td>
+</tr>
+<tr>
+<td><nobr><code>symbol.fontSize.default</code></nobr></td>
+<td>float (mm)</td>
+<td>2.5</td>
+<td>Default font size</td>
+</tr>
+<tr>
+<td><nobr><code>symbol.fontSize.name</code></nobr></td>
+<td>float (mm)</td>
+<td>2.5</td>
+<td>Font size for component name</td>
+</tr>
+<tr>
+<td><nobr><code>symbol.fontSize.pin</code></nobr></td>
+<td>float (mm)</td>
+<td>2.5</td>
+<td>Font size for pin name</td>
+</tr>
+<tr>
+<td><nobr><code>symbol.fontSize.refDes</code></nobr></td>
+<td>float (mm)</td>
+<td>2.5</td>
+<td>Font size for reference designator</td>
+</tr>
+<tr>
+<td><nobr><code>symbol.lineWidth.default</code></nobr></td>
+<td>float (mm)</td>
+<td>0</td>
+<td>Default line width</td>
+</tr>
+<tr>
+<td><nobr><code>symbol.lineWidth.thick</code></nobr></td>
+<td>float (mm)</td>
+<td>0.6</td>
+<td>Thick line width</td>
+</tr>
+<tr>
+<td><nobr><code>symbol.lineWidth.thin</code></nobr></td>
+<td>float (mm)</td>
+<td>0.2</td>
+<td>Thin line width</td>
+</tr>
+<tr>
+<td><nobr><code>symbol.shortPinNames</code></nobr></td>
+<td>boolean</td>
+<td>false</td>
+<td>Do not use alternative pin names separated by <code>/</code> char</td>
+</tr>
+<tr>
+<td><nobr><code>symbol.space.attribute</code></nobr></td>
+<td>float (mm)</td>
+<td>2</td>
+<td>Space between symbol contour and attribute</td>
+</tr>
+<tr>
+<td><nobr><code>symbol.space.default</code></nobr></td>
+<td>float (mm)</td>
+<td>2</td>
+<td>Default space</td>
+</tr>
+<tr>
+<td><nobr><code>symbol.space.pin</code></nobr></td>
+<td>float (mm)</td>
+<td>1.5</td>
+<td>Space between symbol contour and pin number</td>
+</tr>
+<tr>
+<td><nobr><code>symbol.style</code></nobr></td>
+<td>string</td>
+<td>&#39;default&#39;</td>
+<td>Symbol style.<br/> Options: <code>&#39;default&#39;</code>, <code>&#39;GOST&#39;</code></td>
+</tr>
+</tbody>
+</table>
+<p>Land pattern related parameters:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><nobr><code>pattern.ball.collapsible</code></nobr></td>
+<td>boolean</td>
+<td>true</td>
+<td>Collapsing option for BGA packages (according to IPC-7351)</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.clearance.leadToHole</code></nobr></td>
+<td>float (mm)</td>
+<td>0.1</td>
+<td>Gap between through-hole lead and hole</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.clearance.padToMask</code></nobr></td>
+<td>float (mm)</td>
+<td>0.05</td>
+<td>Gap between pad&#39;s metal and mask edges</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.clearance.padToPad</code></nobr></td>
+<td>float (mm)</td>
+<td>0.2</td>
+<td>Gap between neighboring pads</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.clearance.padToSilk</code></nobr></td>
+<td>float (mm)</td>
+<td>0.2</td>
+<td>Gap between pad&#39;s metal and silkscreen drawing</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.decimals</code></nobr></td>
+<td>integer</td>
+<td>3</td>
+<td>Number of digits after decimal point (precision) in generated files</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.densityLevel</code></nobr></td>
+<td>string</td>
+<td>&#39;N&#39;</td>
+<td>Component placement density level (according to IPC-7351).<br/> Options: <code>&#39;L&#39;</code>, <code>&#39;N&#39;</code>, <code>&#39;M&#39;</code></td>
+</tr>
+<tr>
+<td><nobr><code>pattern.fontSize.default</code></nobr></td>
+<td>float (mm)</td>
+<td>1</td>
+<td>Default font size</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.fontSize.refDes</code></nobr></td>
+<td>float (mm)</td>
+<td>1.2</td>
+<td>Font size for reference designator</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.fontSize.value</code></nobr></td>
+<td>float (mm)</td>
+<td>1</td>
+<td>Font size for value</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.lineWidth.assembly</code></nobr></td>
+<td>float (mm)</td>
+<td>0.1</td>
+<td>Line width for drawing in assembly layer</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.lineWidth.courtyard</code></nobr></td>
+<td>float (mm)</td>
+<td>0.05</td>
+<td>Line width for drawing in courtyard layer</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.lineWidth.default</code></nobr></td>
+<td>float (mm)</td>
+<td>0.2</td>
+<td>Default line width</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.lineWidth.silkscreen</code></nobr></td>
+<td>float (mm)</td>
+<td>0.12</td>
+<td>Line width for drawing in silkscreen layer</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.minimum.drillDiameter</code></nobr></td>
+<td>float (mm)</td>
+<td>0.2</td>
+<td>Minimal drill diameter (according to PCB manufacturer capabilities)</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.minimum.maskWidth</code></nobr></td>
+<td>float (mm)</td>
+<td>0.2</td>
+<td>Minimal mask strip width (according to PCB manufacturer capabilities).<br/>Has higher priority over <nobr><code>pattern.clearance.padToMask</code></nobr> parameter</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.minimum.ringWidth</code></nobr></td>
+<td>float (mm)</td>
+<td>0.2</td>
+<td>Minimal ring width for vias and through-hole pads (according to PCB manufacturer capabilities)</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.minimum.spaceForIron</code></nobr></td>
+<td>float (mm)</td>
+<td>0</td>
+<td>Minimal space between lead and its pad edges</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.preferManufacturer</code></nobr></td>
+<td>boolean</td>
+<td>true</td>
+<td>Prefer component manufacturer&#39;s dimensions rather than IPC-7351 standard while land pattern calculating</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.polarityMark</code></nobr></td>
+<td>string</td>
+<td>&#39;dot&#39;</td>
+<td>Shape of polarity mark (near to the first pad).<br/> Options: <code>&#39;dot&#39;</code></td>
+</tr>
+<tr>
+<td><nobr><code>pattern.ratio.padToHole</code></nobr></td>
+<td>float</td>
+<td>1.5</td>
+<td>Proportion for pad size calculation from hole diameter</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.style</code></nobr></td>
+<td>string</td>
+<td>&#39;default&#39;</td>
+<td>Pattern style.<br/> Options: <code>&#39;default&#39;</code></td>
+</tr>
+<tr>
+<td><nobr><code>pattern.tolerance.default</code></nobr></td>
+<td>float (mm)</td>
+<td>0.1</td>
+<td>Default size tolerance</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.tolerance.fabrication</code></nobr></td>
+<td>float (mm)</td>
+<td>0.1</td>
+<td>Fabrication tolerance (provided by component manufacturer)</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.tolerance.placement</code></nobr></td>
+<td>float (mm)</td>
+<td>0.1</td>
+<td>Placement tolerance (provided by component placement equipment)</td>
+</tr>
+</tbody>
+</table>
+</body></html>

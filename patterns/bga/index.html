@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="en"><head><title>Title</title><link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" sizes="16x16 24x24 32x32 64x64 128x128 256x256 512x512"></head><body>TOC<hr><h1 id="ball-grid-array-bga-land-pattern">Ball Grid Array (BGA) land pattern</h1>
+<pre><code class="lang-yaml">housing:
+  pattern: BGA
+</code></pre>
+<center><img src="/img/doc/patterns/bga.svg" width="60%" alt="BGA Package"></center>
+
+<h2 id="required-parameters">Required parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bodyLength</code></td>
+<td>dimension</td>
+<td>Package body length (key position in top left)</td>
+</tr>
+<tr>
+<td><code>bodyWidth</code></td>
+<td>dimension</td>
+<td>Package body width (key position in top left)</td>
+</tr>
+<tr>
+<td><code>columnCount</code></td>
+<td>integer</td>
+<td>Count of columns</td>
+</tr>
+<tr>
+<td><code>columnPitch</code></td>
+<td>float</td>
+<td>Pitch between columns.<br/>Not needed if <code>pitch</code> parameter defined</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td>dimension</td>
+<td>Overall package height</td>
+</tr>
+<tr>
+<td><code>leadDiameter</code></td>
+<td>dimension</td>
+<td>Diameter of lead (ball)</td>
+</tr>
+<tr>
+<td><code>pitch</code></td>
+<td>float</td>
+<td>Pitch between leads (when equal for rows and columns).<br/>Not needed if both <code>columnPitch</code> and <code>rowPitch</code> parameters defined</td>
+</tr>
+<tr>
+<td><code>rowCount</code></td>
+<td>integer</td>
+<td>Count of rows</td>
+</tr>
+<tr>
+<td><code>rowPitch</code></td>
+<td>float</td>
+<td>Pitch between rows.<br/>Not needed if <code>pitch</code> parameter defined</td>
+</tr>
+</tbody>
+</table>
+<h2 id="optional-parameters">Optional parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>leadCount</code></td>
+<td>integer</td>
+<td>Actual lead count</td>
+</tr>
+<tr>
+<td><code>padDiameter</code></td>
+<td>float</td>
+<td>Diameter of pad recommended by component manufacturer</td>
+</tr>
+</tbody>
+</table>
+<h2 id="available-outlines">Available outlines</h2>
+<ul>
+<li><code>JEDEC MO-211</code></li>
+</ul>
+<h2 id="real-example">Real example</h2>
+<p><a class="ext" href="https://github.com/qeda/library/blob/master/analog/ad9393.yaml" target="_blank">Analog Devices AD9393</a><!--_-->:</p>
+<pre><code class="lang-yaml">housing:
+  pattern: BGA
+  bodyWidth: 5.90-6.10
+  bodyLength: 5.90-6.10
+  height: 1.40
+  pitch: 0.5
+  rowCount: 10
+  columnCount: 10
+  leadDiameter: 0.25-0.35
+  leadCount: 76
+</code></pre>
+</body></html>

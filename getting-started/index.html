@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="en"><head><title>Title</title><link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" sizes="16x16 24x24 32x32 64x64 128x128 256x256 512x512"></head><body>TOC<hr><h1 id="getting-started">Getting started</h1>
+<p>Let us explore QEDA capabilities by creating a simple PCB. This will be an abstract Wi-Fi adapter which uses ESP-07 module.</p>
+<p>We will use Ubuntu during demonstration but one may repeat following steps on any compatible operating system (with minor modifications).</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Be sure to have <a class="ext" href="https://nodejs.org/" target="_blank">Node.js</a><!--_--> installed. Good command to check it is:</p>
+<pre><code class="lang-bash">node --version
+</code></pre>
+<p>You should see something like this:</p>
+<pre class="terminal">
+v6.4.0
+</pre>
+
+<p>If there is only <code>nodejs</code> command instead of <code>node</code> in your distribution you have to create symlink:</p>
+<pre><code class="lang-bash">sudo ln -s `which nodejs` /usr/bin/node
+</code></pre>
+<p>Also fresh version of <a class="ext" href="http://kicad-pcb.org" target="_blank">KiCad EDA</a><!--_--> should be installed.  </p>
+<h2 id="installation">Installation</h2>
+<p>The simplest way to install QEDA tools is to use NPM:</p>
+<pre><code class="lang-bash">sudo npm install -g qeda
+</code></pre>
+<p>Verify whether installation completed successfully. Run:</p>
+<pre><code class="lang-bash">qeda --version
+</code></pre>
+<p>If you see something like ...</p>
+<p><pre class="terminal">
+QEDA v0.2.3
+</pre>
+... we can continue.</p>
+<p>Create directory for our future PCB project:</p>
+<pre><code class="lang-bash">mkdir wifi-adapter
+cd wifi-adapter
+</code></pre>
+<h2 id="step-1-apply-manufacturer-s-design-rules">Step 1: Apply manufacturer&#39;s design rules</h2>
+<p>Any PCB manufacturer has some limitations specified by production capabilities.</p>
+<p>For example let&#39;s explore <a class="ext" href="https://oshpark.com/guidelines" target="_blank">OSH Park guidelines</a><!--_-->:</p>
+<ul>
+<li>6 mil (<strong>0.2 mm</strong>) minimum spacing</li>
+<li>13 mil (<strong>0.4 mm</strong>) minimum drill size</li>
+<li>7 mil (<strong>0.2 mm</strong>) minimum annular ring</li>
+</ul>
+<p>Create subdirectory for elements library:</p>
+<pre><code class="lang-bash">mkdir lib
+cd lib
+</code></pre>
+<p>And apply these restrictions (all dimensions are in millimeters):</p>
+<pre><code class="lang-bash">qeda config pattern.clearance.padToPad 0.2
+qeda config pattern.minimum.drillDiameter 0.4
+qeda config pattern.minimum.ringWidth 0.2
+</code></pre>
+<p>Please refer to <a href="/doc/qeda/config/">Command-line utility</a> section for details about all options available.</p>
+<p>After executing commands above there will be new <code>.qeda.yaml</code> file with correspondent settings. This file will contain data produced by <code>qeda</code> command.</p>
+<h2 id="step-2-other-settings">Step 2: Other settings</h2>
+<p>We can choose preferred method of land pattern generation: using recommended dimensions provided by element manufacturer or using IPC-7351 standard. This method is controlled by <code>pattern.preferManufacturer</code> configuration parameter and has <code>true</code> value by default.</p>
+<p>IPC-7351 standard provides three component density levels:</p>
+<ul>
+<li>Minimum (Least, <code>L</code>) Land Protrusion &mdash; high component density typical of portable and hand-held product applications.</li>
+<li>Median  (Nominal, <code>N</code>)  Land  Protrusion &mdash; products with a moderate level of component density.</li>
+<li>Maximum  (Most, <code>M</code>)  Land  Protrusion &mdash; for low-density product applications.</li>
+</ul>
+<p>We do not care about free space so we will choose lowest (<code>M</code>) density level:</p>
+<pre><code class="lang-bash">qeda config pattern.densityLevel M
+</code></pre>
+<p>Our future PCB assumed to be manually soldered therefore another parameter should be set: minimal distance from lead end to correspondent pad edge:</p>
+<pre><code class="lang-bash">qeda config pattern.minimum.spaceForIron 0.5
+</code></pre>
+<h2 id="step-3-adding-elements">Step 3: Adding elements</h2>
+<p>Elements used are already in <a href="/doc/library/">repository</a> so we need only to add them:</p>
+<pre><code class="lang-bash">qeda add espressif/esp-07
+qeda add capacitor/c0603
+qeda add capacitor/c1210
+qeda add resistor/r0603
+qeda add misc/tp-th-1
+qeda add ti/lm1117mpx
+qeda add hirose/df13a-6p-1.25h
+</code></pre>
+<p>You may examine their definitions if you are interested in:</p>
+<ul>
+<li><a class="ext" href="https://github.com/qeda/library/blob/master/espressif/esp-07.yaml" target="_blank">Espressif ESP-07</a><!--_--></li>
+<li><a class="ext" href="https://github.com/qeda/library/blob/master/capacitor/c0603.yaml" target="_blank">Capacitor C0603</a><!--_--></li>
+<li><a class="ext" href="https://github.com/qeda/library/blob/master/capacitor/c1210.yaml" target="_blank">Capacitor C1210</a><!--_--></li>
+<li><a class="ext" href="https://github.com/qeda/library/blob/master/resistor/r0603.yaml" target="_blank">Resistor R0603</a><!--_--></li>
+<li><a class="ext" href="https://github.com/qeda/library/blob/master/misc/tp-th-1.yaml" target="_blank">Misc TP-TH-1</a><!--_--></li>
+<li><a class="ext" href="https://github.com/qeda/library/blob/master/ti/lm1117mpx.yaml" target="_blank">TI LM1117MPX</a><!--_--></li>
+<li><a class="ext" href="https://github.com/qeda/library/blob/master/hirose/df13a-6p-1.25h.yaml" target="_blank">Hirose DF13A-6P-1.25H</a><!--_--></li>
+</ul>
+<p>If there is no element needed in repository you can add new one. Please refer to <a href="/doc/qeda/component">Component description</a> section for details.</p>
+<p>Some power and ground symbols are to be added too:</p>
+<pre><code class="lang-bash">qeda power +5V
+qeda power +3V3
+qeda ground signal/GND
+</code></pre>
+<h2 id="step-4-library-generation">Step 4: Library generation</h2>
+<p>This step is quite easy. Let&#39;s call our library <code>wa</code>:</p>
+<pre><code class="lang-bash">qeda generate wa
+</code></pre>
+<p>You will see many lines of text that should end with KiCad libraries files generation:</p>
+<p><pre class="terminal">
+Generate output for &#39;wa&#39;
+  KiCad library &#39;wa.lib&#39;
+  KiCad library doc &#39;wa.dcm&#39;
+  KiCad footprint &#39;SON200P2120X1600X300-16M.kicad_mod&#39;
+  KiCad footprint &#39;CAPC1608X92M.kicad_mod&#39;
+  KiCad footprint &#39;CAPC3225X230M.kicad_mod&#39;
+  KiCad footprint &#39;RESC1608X55M.kicad_mod&#39;
+  KiCad footprint &#39;TP-TH-1.kicad_mod&#39;
+  KiCad footprint &#39;SOT230P700X180-4M.kicad_mod&#39;
+  KiCad footprint &#39;HIROSE_DF13A-6P-1.25H.kicad_mod&#39;
+</pre>
+Now we have two new subdirectories:</p>
+<ul>
+<li><code>library</code> containing cached YAML-descriptions of used elements</li>
+<li><code>kicad</code> with library files intended to be used in KiCad</li>
+</ul>
+<h2 id="step-5-schematic-design">Step 5: Schematic design</h2>
+<p>Create new KiCad project in <code>wifi-adapter/board</code> directory.</p>
+<p>As our new library is all-sufficient one may delete any others libraries provided by Kicad by default.</p>
+<center><img src="/img/doc/eeschema-lib.png" width="515" height="659" alt="Eeschema Libraries"></center>
+
+<p>Using <code>wa</code> library add new elements and complete the schematic.</p>
+<center><img src="/img/doc/eeschema-sch.png" width="675" height="520" alt="Eeschema Schematic"></center>
+
+<p>There is a good news! With our library generated by QEDA we do not need to run KiCad&#39;s <code>Cvpcb</code> in order to assign component footprints. All schematic symbols already have their own land patterns assigned.</p>
+<p>After generating netlist we are ready for the next final step.</p>
+<h2 id="step-6-pcb-routing">Step 6: PCB Routing</h2>
+<p>Firstly we are to inform PCB editor to get land patterns from our <code>wa</code> library. In order to do it we create <code>fp-lib-table</code> file in project directory and fill it with text:</p>
+<pre><code>(fp_lib_table
+  (lib (name wa)(type KiCad)(uri ${KIPRJMOD}/../lib/kicad/wa.pretty)(options &quot;&quot;)(descr &quot;&quot;))
+)
+</code></pre><p>Import netlist then perform auto spread.</p>
+<center><img src="/img/doc/pcbnew-start.png" width="671" height="374" alt="Pcbnew Start"></center>
+
+<p>Complete PCB routing.</p>
+<center><img src="/img/doc/pcbnew-complete.png" width="560" height="560" alt="Pcbnew Complete"></center>
+
+<center><img src="/img/doc/pcb-realistic.jpg" width="730" height="361" alt="Pcbnew Realistic"></center>
+
+<p>Now we can generate gerber files and make an order of our new PCB.</p>
+<p>That&#39;s all!</p>
+<h2 id="source-files">Source files</h2>
+<p><strong>GitHub</strong>: <a class="ext" href="https://github.com/qeda/examples/tree/master/wifi-adapter" target="_blank">https://github.com/qeda/examples/tree/master/wifi-adapter</a><!--_--></p>
+</body></html>
