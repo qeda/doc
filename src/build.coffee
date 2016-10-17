@@ -18,15 +18,32 @@ pagesTree = (dir, tree) ->
       tree[key] = pagePath
   tree
 
+pagesList = (tree, dir, level, list) ->
+  list ?= []
+  level ?= 0
+
+  for k, v of tree
+    obj =
+      path: if dir? then "#{dir}/#{k}" else k
+      level: level + 1
+    if typeof v is 'object'
+      obj.src = v.index
+      obj.title = getTitle obj.src
+      list.push obj
+      pagesList v, obj.path, obj.level, list
+    else if k isnt 'index'
+      obj.src = v
+      obj.title = getTitle obj.src
+      list.push obj
+
+  list
+
 #
 # Get page title
 #
 getTitle = (src) ->
-  #fd = fs.openSync src, 'r'
-  #title = fs.readLineSync fd
-  #fs.closeSync fd
-  title = 'Title'
-  title
+  data = fs.readFileSync(src).toString()
+  data.split('\n')[0]
 
 #
 # Parse Markdown files
@@ -37,40 +54,38 @@ parseMarkdown = (src) ->
 #
 # Table of contents
 #
-tableOfContents = (tree) ->
-  for k, v of tree
-    console.log k
+tableOfContents = (currentPage, pages) ->
+  toc = ''
+  level = 0
+  for page in pages
+    if page.level > level
+      toc += '<ul>'
+    else if page.level < level
+      toc += '</ul>'
+    level = page.level
+    if page.src is currentPage.src
+      toc += "<li><b>#{page.title}</b></li>"
+    else
+      toc += "<li><a href=\"/#{page.path}/\">#{page.title}</a></li>"
+  while level--
+    toc += '</ul>'
+  toc
 
 #
 # Render output file
 #
-render = (dir, src) ->
+render = (page, pages) -> #src, toc, dir) ->
+  console.log "Rendering '#{page.path}/index.html'"
+  if not fs.existsSync page.path
+    fs.mkdirSync page.path
   pugRender = pug.compileFile 'src/template.pug'
   html = pugRender
-    title: getTitle src
-    body: parseMarkdown(src)
-    toc: 'TOC'
-  fd = fs.openSync "#{dir}/index.html", 'w'
+    title: page.title
+    body: parseMarkdown page.src
+    toc: tableOfContents page, pages
+  fd = fs.openSync "#{page.path}/index.html", 'w'
   fs.writeSync fd, html
   fs.closeSync fd
-
-#
-# Generate pages
-#
-generate = (tree, dir) ->
-  dir ?= '.'
-  for k, v of tree
-    if k isnt 'index'
-      path = "#{dir}/#{k}"
-      console.log path
-      if not fs.existsSync path
-        fs.mkdirSync path
-      if typeof v is 'object'
-        generate v, path
-      else
-        render path, v
-    else
-      render dir, v
 
 #
 # Main
@@ -78,4 +93,12 @@ generate = (tree, dir) ->
 process.chdir "#{__dirname}/.."
 
 tree = pagesTree 'src/pages'
-generate tree
+pages = pagesList tree
+index =
+  path: '.'
+  level: 0
+  src: tree.index
+  title: getTitle tree.index
+render index, pages
+for page in pages
+  render page, pages
