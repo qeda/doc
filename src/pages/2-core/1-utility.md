@@ -132,7 +132,7 @@ Schematic symbol related parameters:
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | <nobr>`symbol.gridSize`</nobr> | float (mm) | 2.5 | Grid cell size. |
-| <nobr>`symbol.fill`</nobr> | string | 'foreground' | Symbol contour filling type. <br/>Options: `foreground`, `background`, `none`<br/> <center><img src="/img/doc/fill.png" width="330" height="90" alt="Filling Options"></center> |
+| <nobr>`symbol.fill`</nobr> | string | 'foreground' | Symbol contour filling type. <br/>Options: `foreground`, `background`, `none`<br/> <center><img src="/img/fill.png" width="330" height="90" alt="Filling Options"></center> |
 | <nobr>`symbol.fontSize.default`</nobr> | float (mm) | 2.5 | Default font size |
 | <nobr>`symbol.fontSize.name`</nobr> | float (mm) | 2.5 | Font size for component name |
 | <nobr>`symbol.fontSize.pin`</nobr> | float (mm) | 2.5 | Font size for pin name |
