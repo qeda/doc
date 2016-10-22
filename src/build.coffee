@@ -62,15 +62,17 @@ tableOfContents = (currentPage, pages) ->
   toc = ''
   level = 0
   numbers = []
-  tags = ['', '<ul class="chapter">', '<ul class="section">', '<ul class="subsection">']
+  uls = ['', '<ul class="chapter">', '<ul class="section">', '<ul class="subsection">']
   for page in pages
     numbers[page.level] ?= 0
+    numbers[page.level + 1] = 0
     numbers[page.level]++
+
     number = ''
     for i in [1..page.level]
       number += numbers[i] + '.'
     if page.level > level
-      toc += tags[page.level]
+      toc += uls[page.level]
     else if page.level < level
       toc += '</ul>'
     level = page.level
@@ -78,6 +80,7 @@ tableOfContents = (currentPage, pages) ->
       toc += "<li><strong>#{number}&nbsp;#{page.title}</strong></li>"
     else
       toc += "<li><a href=\"/#{page.path}/\"><strong>#{number}</strong>&nbsp;#{page.title}</a></li>"
+
   while level--
     toc += '</ul>'
   toc
