@@ -41,7 +41,6 @@ table {
 	font-feature-settings: "kern", "liga", "tnum";
 	border-collapse: collapse;
 	margin: 0.75em 0;
-	table-layout: fixed;
 	width: 100%;
 }
 thead {
