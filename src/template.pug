@@ -4,11 +4,15 @@ html(lang="en")
     title #{title}
     link(rel='shortcut icon' href='/img/favicon.ico' type='image/x-icon' sizes='16x16 24x24 32x32 64x64 128x128 256x256 512x512')
 
-  body
-    #sidebar.sidebar
-      | !{toc}
-    #page-wrapper.page-wrapper
-      .page
+  body.guides.index
+    main.container
+      aside.sidebar
+        label(for='toc-toggle')
+          | Table of Contents
+          span(for='toc-toggle' class='visually-hidden') toggle
+        .toc-container
+          | !{toc}
+      article.chapter
         | !{body}
 
   link(href='/css/qeda.min.css', rel='stylesheet')

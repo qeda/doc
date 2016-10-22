@@ -71,18 +71,19 @@ tableOfContents = (currentPage, pages) ->
     number = ''
     for i in [1..page.level]
       number += numbers[i] + '.'
+    classTag = "class=\"toc-level-#{page.level - 1}\""
     if page.level > level
-      toc += uls[page.level]
+      toc += "<ol #{classTag}>" #uls[page.level]
     else if page.level < level
-      toc += '</ul>'
+      toc += '</ol>'
     level = page.level
     if page.src is currentPage.src
-      toc += "<li><strong>#{number}&nbsp;#{page.title}</strong></li>"
+      toc += "<li #{classTag}><strong>#{number}&nbsp;#{page.title}</strong></li>"
     else
-      toc += "<li><a href=\"/#{page.path}/\"><strong>#{number}</strong>&nbsp;#{page.title}</a></li>"
+      toc += "<li #{classTag}><a href=\"/#{page.path}/\"><strong>#{number}</strong>&nbsp;#{page.title}</a></li>"
 
   while level--
-    toc += '</ul>'
+    toc += '</ol>'
   toc
 
 #
