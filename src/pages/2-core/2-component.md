@@ -1,7 +1,7 @@
 Component description
 =====================
 
-The file that describes electronic component represents human readable <a class="ext" href="http://yaml.org/" target="_blank">YAML</a><!--_--> document. All description files should be located in `library` directory (relatively to current working directory). Path of description file inside `library` directory is pointed as parameter in `qeda add` command.
+The file that describes electronic component represents human readable [YAML](http://yaml.org/) document. All description files should be located in `library` directory (relatively to current working directory). Path of description file inside `library` directory is pointed as parameter in `qeda add` command.
 
 For example if you add file `my-element.yaml` to `library` subdirectory you have to run in order to add it:
 
@@ -21,7 +21,7 @@ If you want to create a library with the only one element (for testing purposes)
 qeda test my-element
 ```
 
-The good point of starting is to clone and examine [QEDA Library](/doc/library/):
+The good point of starting is to clone and examine [QEDA Library](/library/):
 
 ```bash
 git clone https://github.com/qeda/library.git --depth 1
@@ -30,7 +30,7 @@ git clone https://github.com/qeda/library.git --depth 1
 General description structure
 -----------------------------
 
-Let's explore simple YAML definition of <a class="ext" href="https://github.com/qeda/library/blob/master/misc/tp-sm-1.yaml" target="_blank">test point</a><!--_-->.
+Let's explore simple YAML definition of [test point](https://github.com/qeda/library/blob/master/misc/tp-sm-1.yaml).
 
 ```yaml
 name: TP-SM-1
@@ -110,7 +110,7 @@ List of parameters
 
 Abstract description may be used only as base for other description. It is useful when several components share common parameters. Abstract component can not be added to library.
 
-**Real example** <a class="ext" href="https://github.com/qeda/library/blob/master/maxim/max607x.yaml" target="_blank">Maxim MAX607x</a><!--_-->:
+**Real example** [Maxim MAX607x](https://github.com/qeda/library/blob/master/maxim/max607x.yaml):
 
 ```yaml
 abstract: true
@@ -123,7 +123,7 @@ abstract: true
 
 Alternative name (or names) of component. Creates separate record (records) in output library.
 
-**Real example** <a class="ext" href="https://github.com/qeda/library/blob/master/ti/lm1117mpx.yaml" target="_blank">TI LM1117MPX</a><!--_-->:
+**Real example** [TI LM1117MPX](https://github.com/qeda/library/blob/master/ti/lm1117mpx.yaml):
 
 ```yaml
 name: LM1117MPX
@@ -139,7 +139,7 @@ This directive allows to include parameters from other descriptions. Base descri
 
 One may override parameters defined in base description and add other parameters.
 
-**Real example** <a class="ext" href="https://github.com/qeda/library/blob/master/maxim/max6070.yaml" target="_blank">Maxim MAX6070</a><!--_-->:
+**Real example** [Maxim MAX6070](https://github.com/qeda/library/blob/master/maxim/max6070.yaml):
 
 ```yaml
 base: MAX607x
@@ -152,7 +152,7 @@ base: MAX607x
 
 Link to the datasheet.
 
-**Real example** <a class="ext" href="https://github.com/qeda/library/blob/master/ti/opa335.yaml" target="_blank">TI OPA335</a><!--_-->:
+**Real example** [TI OPA335](https://github.com/qeda/library/blob/master/ti/opa335.yaml):
 
 ```yaml
 datasheet: http://www.ti.com/lit/ds/symlink/opa335.pdf
@@ -163,7 +163,7 @@ datasheet: http://www.ti.com/lit/ds/symlink/opa335.pdf
 
 Short text description of electronic component.
 
-**Real example** <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/atmega8.yaml" target="_blank">Atmel ATmega8A</a><!--_-->:
+**Real example** [Atmel ATmega8A](https://github.com/qeda/library/blob/master/atmel/atmega8.yaml):
 
 ```yaml
 description: 8-bit AVR Microcontroller
@@ -199,7 +199,7 @@ groups:
   DATA: A, B, C
 ```
 
-**Real example** <a class="ext" href="https://github.com/qeda/library/blob/master/ti/iso72x.yaml" target="_blank">TI ISO72x</a><!--_-->:
+**Real example** [TI ISO72x](https://github.com/qeda/library/blob/master/ti/iso72x.yaml):
 
 ```yaml
 groups:
@@ -230,7 +230,7 @@ housing:
   ... # pattern dependent parameters
 ```
 
-`pattern` value is a base name of script which is responsible for land pattern generation. For example `pattern: QFP` will run <a class="ext" href="https://github.com/qeda/qeda/blob/master/src/pattern/default/qfp.coffee" target="_blank">pattern/default/qfp.coffee</a><!--_--> script in order to generate QFP land pattern. If [style](/doc/qeda/styling/) is not `default` then pattern generator script will be searched in `pattern/<style>/` directory.
+`pattern` value is a base name of script which is responsible for land pattern generation. For example `pattern: QFP` will run [pattern/default/qfp.coffee](https://github.com/qeda/qeda/blob/master/src/pattern/default/qfp.coffee) script in order to generate QFP land pattern. If [style](/core/styling/) is not `default` then pattern generator script will be searched in `pattern/<style>/` directory.
 
 One may use his own generator written on CoffeeScript or JavaScript placed in local `pattern` directory. For `./pattern/my-generator.js` script one should point:
 
@@ -239,11 +239,11 @@ housing:
   pattern: my-generator
 ```
 
-Alternative way to specify land pattern generator is to point standard `outline` which cause parameters to be borrowed from corresponding outline description. For example `outline: JEDEC MS-026 AEB` setting will load housing parameters from <a class="ext" href="https://github.com/qeda/qeda/blob/master/share/outline/jedec/ms-026.yaml" target="_blank">share/outline/jedec/ms-026.yaml</a><!--_--> description (`AEB` will be matched to corresponding sections inside YAML-outline).
+Alternative way to specify land pattern generator is to point standard `outline` which cause parameters to be borrowed from corresponding outline description. For example `outline: JEDEC MS-026 AEB` setting will load housing parameters from [share/outline/jedec/ms-026.yaml](https://github.com/qeda/qeda/blob/master/share/outline/jedec/ms-026.yaml) description (`AEB` will be matched to corresponding sections inside YAML-outline).
 
-Please refer to [particular pattern documentation](/doc/patterns/) for detailed information about pattern dependent parameters.
+Please refer to [particular pattern documentation](/patterns/) for detailed information about pattern dependent parameters.
 
-**Real example** <a class="ext" href="https://github.com/qeda/library/blob/master/resistor/r0603.yaml" target="_blank">Resistor R0603</a><!--_-->:
+**Real example** [Resistor R0603](https://github.com/qeda/library/blob/master/resistor/r0603.yaml):
 
 ```yaml
 housing:
@@ -266,7 +266,7 @@ joint:
   <group name>: <delimiter character>
 ```
 
-**Real example** <a class="ext" href="https://github.com/qeda/library/blob/master/altera/10m50sce144.yaml" target="_blank">Altera 10M50SCE144</a><!--_-->:
+**Real example** [Altera 10M50SCE144](https://github.com/qeda/library/blob/master/altera/10m50sce144.yaml):
 
 ```yaml
 pinout:
@@ -290,9 +290,9 @@ pinout:
 `keywords`
 ----------
 
-Keywords related to the electronic component. May be used by [custom style handlers](/doc/qeda/styling/) for extra information about element.
+Keywords related to the electronic component. May be used by [custom style handlers](/core/styling/) for extra information about element.
 
-**Real example** <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/ata6670.yaml" target="_blank">Atmel ATA6670</a><!--_-->:
+**Real example** [Atmel ATA6670](https://github.com/qeda/library/blob/master/atmel/ata6670.yaml):
 
 ```yaml
 keywords: IC, Digital, Transceiver
@@ -307,7 +307,7 @@ Unique name of electronic component. This is key which element is identified in 
 
 This is a good practice to make combination of name and [suffix](#-suffix-) to be most similar to ordering part number (except tape and reel package options, Pb-free version etc.).
 
-**Real example** <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/atmega128.yaml" target="_blank">Atmel ATmega128</a><!--_-->:
+**Real example** [Atmel ATmega128](https://github.com/qeda/library/blob/master/atmel/atmega128.yaml):
 
 ```yaml
 name: ATmega128
@@ -330,7 +330,7 @@ parts:
 
 Each entry with `part name` defines separate schematic symbol which incorporates pins (and/or pin groups) specified.
 
-**Real example** <a class="ext" href="https://github.com/qeda/library/blob/master/ti/tms320f28374dptp.yaml" target="_blank">TI TMS320F28374DPTP</a><!--_-->:
+**Real example** [TI TMS320F28374DPTP](https://github.com/qeda/library/blob/master/ti/tms320f28374dptp.yaml):
 
 ```yaml
 parts:
@@ -393,7 +393,7 @@ pinout:
 
 This will produce pins `D16` (pin number `1`), `D15` (`2`), `D14` (`3`) ... `D0`(`17`), `CLK` (`18`).
 
-**Real example** <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/atmega8.yaml" target="_blank">Atmel ATmega8</a><!--_-->:
+**Real example** [Atmel ATmega8](https://github.com/qeda/library/blob/master/atmel/atmega8.yaml):
 
 ```yaml
 pinout:
@@ -454,7 +454,7 @@ properties:
 
 `VIN` is voltage input, `VOUT` is voltage output, `~RESET` is inverted digital input.
 
-**Real example** <a class="ext" href="https://github.com/qeda/library/blob/master/cypress/cy15b102q.yaml" target="_blank">Cypress CY15B102Q</a><!--_-->:
+**Real example** [Cypress CY15B102Q](https://github.com/qeda/library/blob/master/cypress/cy15b102q.yaml):
 
 ```yaml
 properties:
@@ -480,7 +480,7 @@ schematic:
   ... # symbol dependent parameters
 ```
 
-`symbol` value is a base name of script which is responsible for schematic symbol generation. For example `symbol: IC` will run <a class="ext" href="https://github.com/qeda/qeda/blob/master/src/symbol/default/ic.coffee" target="_blank">symbol/default/ic.coffee</a><!--_--> script in order to generate integrated circuit schematic symbol. If style is not default then symbol generator script will be searched in `symbol/<style>/` directory (see <a class="ext" href="https://github.com/qeda/qeda/tree/master/src/symbol/gost" target="_blank">GOST style</a><!--_--> for example).
+`symbol` value is a base name of script which is responsible for schematic symbol generation. For example `symbol: IC` will run [symbol/default/ic.coffee](https://github.com/qeda/qeda/blob/master/src/symbol/default/ic.coffee) script in order to generate integrated circuit schematic symbol. If style is not default then symbol generator script will be searched in `symbol/<style>/` directory (see [GOST](https://github.com/qeda/qeda/tree/master/src/symbol/gost) style for example).
 
 One may use his own generator written on CoffeeScript or JavaScript placed in local `symbol` directory. For `./symbol/my-generator.js` script one should point:
 
@@ -488,9 +488,9 @@ One may use his own generator written on CoffeeScript or JavaScript placed in lo
 schematic:
   symbol: my-generator
 ```
-Please refer to [particular symbol documentation](/doc/symbols/) for detailed information about symbol dependent parameters.
+Please refer to [particular symbol documentation](/symbols/) for detailed information about symbol dependent parameters.
 
-**Real example** <a class="ext" href="https://github.com/qeda/library/blob/master/infineon/kp235.yaml" target="_blank">Infineon KP235</a><!--_-->:
+**Real example** [Infineon KP235](https://github.com/qeda/library/blob/master/infineon/kp235.yaml):
 
 ```yaml
 schematic:
@@ -517,7 +517,7 @@ will produce library element with name `COMP` and three aliases with names `COMP
 
 This suffix is placed after `housing`'s `suffix` (if any).
 
-**Real example** <a class="ext" href="https://github.com/qeda/library/blob/master/maxim/max1735.yaml" target="_blank">Maxim MAX1735</a><!--_-->:
+**Real example** [Maxim MAX1735](https://github.com/qeda/library/blob/master/maxim/max1735.yaml):
 
 ```yaml
 suffix: EUK50-T, EUK30-T, EUK25-T
@@ -554,7 +554,7 @@ Thus one may add to library only one variation instead of all of them:
 qeda add group/component@variation
 ```
 
-**Real example** <a class="ext" href="https://github.com/qeda/library/blob/master/ti/sn74lvc1g07.yaml" target="_blank">TI SN74LVC1G07</a><!--_-->:
+**Real example** [TI SN74LVC1G07](https://github.com/qeda/library/blob/master/ti/sn74lvc1g07.yaml):
 
 ```yaml
 variations: SOT-23, SC70, SOT, SON1, SON2, DSBGA-6, DSBGA-4

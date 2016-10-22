@@ -19,7 +19,3 @@ Parameter types
 - *integer* &mdash; integer value
 
   **Example**: `64`
-
-
-Contents
-========

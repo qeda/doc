@@ -10,11 +10,11 @@ Both schematic symbols and land patterns can be customized using styles.
 Schematic symbols styling
 -------------------------
 
-Schematic symbol style is controlled by `symbol.style` configuration parameter (see [Parameters list](/doc/qeda/utility/#parameters-list) for details).
+Schematic symbol style is controlled by `symbol.style` configuration parameter (see [Parameters list](/core/utility/#parameters-list) for details).
 
-In order to create your own style you should clone QEDA repository (see [Advanced customization](/doc/qeda/advanced/)) and create style subdirectory in `src/symbol/` directory.
+In order to create your own style you should clone QEDA repository (see [Advanced customization](/core/advanced/)) and create style subdirectory in `src/symbol/` directory.
 
-For example refer to <a class="ext" href="https://github.com/qeda/qeda/tree/master/src/symbol/gost" target="_blank">GOST style</a><!--_-->
+For example refer to [GOST](https://github.com/qeda/qeda/tree/master/src/symbol/gost) style
 
 Land patterns styling
 ---------------------

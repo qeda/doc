@@ -15,12 +15,12 @@ qeda --help
 
 | Command | Description | Example |
 |---------|-------------|---------|
-| <nobr>[add](#-add-) _COMPONENT_</nobr> | Add component definition to configuration file (with preloading from [remote repository](/doc/library) if necessary) | <nobr>`qeda add ti/iso721`</nobr> |
+| <nobr>[add](#-add-) _COMPONENT_</nobr> | Add component definition to configuration file (with preloading from [remote repository](/library/) if necessary) | <nobr>`qeda add ti/iso721`</nobr> |
 | [completion](#-completion-) | Display completion script | <nobr>`source <(qeda completion)`</nobr> |
 | <nobr>[config](#-config-) _PARAM_ [_VALUE_]</nobr> | Set/get configuration parameter (see [Parameters list](#parameters-list)) | <nobr>`qeda config output kicad`</nobr> |
 | <nobr>[generate](#-generate-) _LIBRARY_</nobr> | Generate libraries for EDA according to configuration file | <nobr>`qeda generate mylib`</nobr> |
 | <nobr>[ground](#-ground-) _NET_</nobr> | Add ground symbol to configuration file | <nobr>`qeda ground GND_DC`</nobr> |
-| <nobr>[load](#-load-) _COMPONENT_</nobr> | Load component description from [remote repository](/doc/library) and caching to `library` subdirectory (without adding to configuration file) | <nobr>`qeda load ti/iso721`</nobr> |
+| <nobr>[load](#-load-) _COMPONENT_</nobr> | Load component description from [remote repository](/library/) and caching to `library` subdirectory (without adding to configuration file) | <nobr>`qeda load ti/iso721`</nobr> |
 | <nobr>[power](#-power-) _NET_</nobr> | Add power supply symbol to configuration file | `qeda power +5V_DC` |
 | [reset](#-reset-) | Delete current configuration file (use with attention!) | <nobr>`qeda reset`</nobr> |
 | [sort](#-sort-) | Sort components and nets in configuration file alphabetically | <nobr>`qeda sort`</nobr> |
@@ -31,11 +31,11 @@ All configuration parameters and list of added components are saved in `.qeda.ya
 `add`
 -----
 
-Firstly this command looks for _COMPONENT_'s YAML-description in `library` directory (relatively to current working directory). In case of its absence utility tries to download correspondent description from [remote repository](/doc/library/). Successful downloading leads to caching this description file in `library` directory and add corresponding record to `.qeda.yaml` configuration file. When called for the second time, utility will use cached file instead of loading it from Internet.
+Firstly this command looks for _COMPONENT_'s YAML-description in `library` directory (relatively to current working directory). In case of its absence utility tries to download correspondent description from [remote repository](/library/). Successful downloading leads to caching this description file in `library` directory and add corresponding record to `.qeda.yaml` configuration file. When called for the second time, utility will use cached file instead of loading it from Internet.
 
 If there is no appropriate description file in local `library` directory nor in remote library, utility will return an error.
 
-Some components may be presented in several [variations](/doc/qeda/component/#-variations-). In order to add only one variation to library you need to point this variation after `@` character:
+Some components may be presented in several [variations](/core/component/#-variations-). In order to add only one variation to library you need to point this variation after `@` character:
 
     qeda add ti/sn74lvc1g07@sot-23
 
@@ -78,14 +78,14 @@ qeda ground chassis/GNDC
 qeda ground earth/GNDE
 ```
 
-<center><img src="/img/doc/ground.png" width="300" height="80" alt="Ground Symbols"></center>
+<center><img src="/img/ground.png" width="300" height="80" alt="Ground Symbols"></center>
 
 **See also**: [power](#-power-)
 
 `load`
 ------
 
-This command loads and caches component description from [remote repository](/doc/library) regardless of its existence in `library` directory **without** adding to configuration file.
+This command loads and caches component description from [remote repository](/library/) regardless of its existence in `library` directory **without** adding to configuration file.
 
 **See also**: [add](#-add-)
 
@@ -124,7 +124,7 @@ General parameters:
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| <nobr>`connection.timeout`</nobr> | integer (ms) | 5000 | Maximum connection timeout for component description loading from [remote repository](/doc/library) |
+| <nobr>`connection.timeout`</nobr> | integer (ms) | 5000 | Maximum connection timeout for component description loading from [remote repository](/library/) |
 | `output` | string | 'kicad' | Output library format. The only option supported at the moment is `'kicad'`  |
 
 Schematic symbol related parameters:

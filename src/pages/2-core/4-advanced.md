@@ -1,7 +1,7 @@
 Advanced customization
 ======================
 
-Despite there are many [configuration parameters](/doc/qeda/utility/#parameters-list) allowing to tune the resulting library one may have need to more deep customization. Here we will describe the workflow for more advanced way to use QEDA.
+Despite there are many [configuration parameters](/core/utility/#parameters-list) allowing to tune the resulting library one may have need to more deep customization. Here we will describe the workflow for more advanced way to use QEDA.
 
 1. Cloning the repo
 -------------------

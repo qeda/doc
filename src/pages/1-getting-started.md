@@ -8,7 +8,7 @@ We will use Ubuntu during demonstration but one may repeat following steps on an
 Prerequisites
 -------------
 
-Be sure to have <a class="ext" href="https://nodejs.org/" target="_blank">Node.js</a><!--_--> installed. Good command to check it is:
+Be sure to have [Node.js](https://nodejs.org/) installed. Good command to check it is:
 
 ```bash
 node --version
@@ -26,7 +26,7 @@ If there is only `nodejs` command instead of `node` in your distribution you hav
 sudo ln -s `which nodejs` /usr/bin/node
 ```
 
-Also fresh version of <a class="ext" href="http://kicad-pcb.org" target="_blank">KiCad EDA</a><!--_--> should be installed.  
+Also fresh version of [KiCad EDA](http://kicad-pcb.org/) should be installed.  
 
 Installation
 ------------
@@ -61,7 +61,7 @@ Step 1: Apply manufacturer's design rules
 
 Any PCB manufacturer has some limitations specified by production capabilities.
 
-For example let's explore <a class="ext" href="https://oshpark.com/guidelines" target="_blank">OSH Park guidelines</a><!--_-->:
+For example let's explore [OSH Park guidelines](https://oshpark.com/guidelines):
 
 - 6 mil (**0.2 mm**) minimum spacing
 - 13 mil (**0.4 mm**) minimum drill size
@@ -126,13 +126,13 @@ qeda add hirose/df13a-6p-1.25h
 
 You may examine their definitions if you are interested in:
 
-- <a class="ext" href="https://github.com/qeda/library/blob/master/espressif/esp-07.yaml" target="_blank">Espressif ESP-07</a><!--_-->
-- <a class="ext" href="https://github.com/qeda/library/blob/master/capacitor/c0603.yaml" target="_blank">Capacitor C0603</a><!--_-->
-- <a class="ext" href="https://github.com/qeda/library/blob/master/capacitor/c1210.yaml" target="_blank">Capacitor C1210</a><!--_-->
-- <a class="ext" href="https://github.com/qeda/library/blob/master/resistor/r0603.yaml" target="_blank">Resistor R0603</a><!--_-->
-- <a class="ext" href="https://github.com/qeda/library/blob/master/misc/tp-th-1.yaml" target="_blank">Misc TP-TH-1</a><!--_-->
-- <a class="ext" href="https://github.com/qeda/library/blob/master/ti/lm1117mpx.yaml" target="_blank">TI LM1117MPX</a><!--_-->
-- <a class="ext" href="https://github.com/qeda/library/blob/master/hirose/df13a-6p-1.25h.yaml" target="_blank">Hirose DF13A-6P-1.25H</a><!--_-->
+- [Espressif ESP-07](https://github.com/qeda/library/blob/master/espressif/esp-07.yaml)
+- [Capacitor C0603](https://github.com/qeda/library/blob/master/capacitor/c0603.yaml)
+- [Capacitor C1210](https://github.com/qeda/library/blob/master/capacitor/c1210.yaml)
+- [Resistor R0603](https://github.com/qeda/library/blob/master/resistor/r0603.yaml)
+- [Misc TP-TH-1](https://github.com/qeda/library/blob/master/misc/tp-th-1.yaml)
+- [TI LM1117MPX](https://github.com/qeda/library/blob/master/ti/lm1117mpx.yaml)
+- [Hirose DF13A-6P-1.25H](https://github.com/qeda/library/blob/master/hirose/df13a-6p-1.25h.yaml)
 
 If there is no element needed in repository you can add new one. Please refer to [Component description](/core/component) section for details.
 
@@ -215,4 +215,4 @@ That's all!
 Source files
 ------------
 
-**GitHub**: <a class="ext" href="https://github.com/qeda/examples/tree/master/wifi-adapter" target="_blank">https://github.com/qeda/examples/tree/master/wifi-adapter</a><!--_-->
+**GitHub**: [https://github.com/qeda/examples/tree/master/wifi-adapter](https://github.com/qeda/examples/tree/master/wifi-adapter)

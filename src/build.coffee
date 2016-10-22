@@ -1,6 +1,7 @@
 fs = require 'fs'
 marked = require 'marked'
 pug = require 'pug'
+uglifycss = require 'uglifycss'
 
 #
 # Pages tree
@@ -49,7 +50,10 @@ getTitle = (src) ->
 # Parse Markdown files
 #
 parseMarkdown = (src) ->
-  marked fs.readFileSync(src).toString()
+  body = marked fs.readFileSync(src).toString()
+  # Parse external links
+  body = body.replace /(<a)(.*href="http[^>]+)>/g, '$1 class="ext"$2 target="_blank">'
+  body
 
 #
 # Table of contents
@@ -57,16 +61,23 @@ parseMarkdown = (src) ->
 tableOfContents = (currentPage, pages) ->
   toc = ''
   level = 0
+  numbers = []
+  tags = ['', '<ul class="chapter">', '<ul class="section">', '<ul class="subsection">']
   for page in pages
+    numbers[page.level] ?= 0
+    numbers[page.level]++
+    number = ''
+    for i in [1..page.level]
+      number += numbers[i] + '.'
     if page.level > level
-      toc += '<ul>'
+      toc += tags[page.level]
     else if page.level < level
       toc += '</ul>'
     level = page.level
     if page.src is currentPage.src
-      toc += "<li><b>#{page.title}</b></li>"
+      toc += "<li><strong>#{number}&nbsp;#{page.title}</strong></li>"
     else
-      toc += "<li><a href=\"/#{page.path}/\">#{page.title}</a></li>"
+      toc += "<li><a href=\"/#{page.path}/\"><strong>#{number}</strong>&nbsp;#{page.title}</a></li>"
   while level--
     toc += '</ul>'
   toc
@@ -92,6 +103,7 @@ render = (page, pages) -> #src, toc, dir) ->
 #
 process.chdir "#{__dirname}/.."
 
+# Pages
 tree = pagesTree 'src/pages'
 pages = pagesList tree
 index =
@@ -102,3 +114,15 @@ index =
 render index, pages
 for page in pages
   render page, pages
+
+# CSS
+cssFiles = fs.readdirSync 'src/css/'
+cssFiles = cssFiles.map((v) -> 'src/css/' + v)
+uglified = uglifycss.processFiles cssFiles
+fileName = 'css/qeda.min.css'
+console.log "Rendering '#{fileName}'"
+if not fs.existsSync 'css'
+  fs.mkdirSync 'css'
+fd = fs.openSync fileName, 'w'
+fs.writeSync fd, uglified
+fs.closeSync fd

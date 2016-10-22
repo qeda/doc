@@ -5,6 +5,10 @@ html(lang="en")
     link(rel='shortcut icon' href='/img/favicon.ico' type='image/x-icon' sizes='16x16 24x24 32x32 64x64 128x128 256x256 512x512')
 
   body
-    | !{toc}
-    hr
-    | !{body}
+    #sidebar.sidebar
+      | !{toc}
+    #page-wrapper.page-wrapper
+      .page
+        | !{body}
+
+  link(href='/css/qeda.min.css', rel='stylesheet')

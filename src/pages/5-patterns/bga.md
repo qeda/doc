@@ -1,12 +1,12 @@
-Ball Grid Array (BGA) land pattern
-==================================
+BGA (Ball Grid Array)
+=====================
 
 ```yaml
 housing:
   pattern: BGA
 ```
 
-<center><img src="/img/doc/patterns/bga.svg" width="60%" alt="BGA Package"></center>
+<center><img src="/img/patterns/bga.svg" width="60%" alt="BGA Package"></center>
 
 Required parameters
 -------------------
@@ -39,7 +39,7 @@ Available outlines
 Real example
 ------------
 
-<a class="ext" href="https://github.com/qeda/library/blob/master/analog/ad9393.yaml" target="_blank">Analog Devices AD9393</a><!--_-->:
+[Analog Devices AD9393](https://github.com/qeda/library/blob/master/analog/ad9393.yaml):
 
 ```yaml
 housing:

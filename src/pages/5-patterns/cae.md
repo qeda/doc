@@ -1,5 +1,5 @@
-Capacitor, Aluminum Electrolytic (CAE) land pattern
-===================================================
+CAE (Capacitor, Aluminum Electrolytic)
+======================================
 
 ```yaml
 housing:
@@ -35,7 +35,7 @@ Optional parameters
 Real example
 ------------
 
-<a class="ext" href="https://github.com/qeda/library/blob/master/capacitor/cae-a.yaml" target="_blank">Capacitor CAE-A</a><!--_-->:
+[Capacitor CAE-A](https://github.com/qeda/library/blob/master/capacitor/cae-a.yaml):
 
 ```yaml
 housing:

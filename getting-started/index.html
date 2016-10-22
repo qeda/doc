@@ -1,8 +1,8 @@
-<!DOCTYPE html><html lang="en"><head><title>Getting started</title><link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" sizes="16x16 24x24 32x32 64x64 128x128 256x256 512x512"></head><body><ul><li><b>Getting started</b></li><li><a href="/core/">QEDA Core</a></li><ul><li><a href="/core/utility/">Command-line utility</a></li><li><a href="/core/component/">Component description</a></li><li><a href="/core/styling/">Styling</a></li><li><a href="/core/advanced/">Advanced customization</a></li></ul><li><a href="/library/">QEDA Library</a></li><li><a href="/symbols/">List of supported schematic symbols</a></li><ul><li><a href="/symbols/capacitor/">Capacitor schematic symbol</a></li></ul><li><a href="/patterns/">List of supported land patterns</a></li><ul><li><a href="/patterns/bga/">Ball Grid Array (BGA) land pattern</a></li><li><a href="/patterns/cae/">Capacitor, Aluminum Electrolytic (CAE) land pattern</a></li></ul></ul><hr><h1 id="getting-started">Getting started</h1>
+<!DOCTYPE html><html lang="en"><head><title>Getting started</title><link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" sizes="16x16 24x24 32x32 64x64 128x128 256x256 512x512"></head><body><div class="sidebar" id="sidebar"><ul class="chapter"><li><strong>1.&nbsp;Getting started</strong></li><li><a href="/core/"><strong>2.</strong>&nbsp;QEDA Core</a></li><ul class="section"><li><a href="/core/utility/"><strong>2.1.</strong>&nbsp;Command-line utility</a></li><li><a href="/core/component/"><strong>2.2.</strong>&nbsp;Component description</a></li><li><a href="/core/styling/"><strong>2.3.</strong>&nbsp;Styling</a></li><li><a href="/core/advanced/"><strong>2.4.</strong>&nbsp;Advanced customization</a></li></ul><li><a href="/library/"><strong>3.</strong>&nbsp;QEDA Library</a></li><li><a href="/symbols/"><strong>4.</strong>&nbsp;List of supported schematic symbols</a></li><ul class="section"><li><a href="/symbols/capacitor/"><strong>4.5.</strong>&nbsp;Capacitor</a></li></ul><li><a href="/patterns/"><strong>5.</strong>&nbsp;List of supported land patterns</a></li><ul class="section"><li><a href="/patterns/bga/"><strong>5.6.</strong>&nbsp;BGA (Ball Grid Array)</a></li><li><a href="/patterns/cae/"><strong>5.7.</strong>&nbsp;CAE (Capacitor, Aluminum Electrolytic)</a></li></ul></ul></div><div class="page-wrapper" id="page-wrapper"><div class="page"><h1 id="getting-started">Getting started</h1>
 <p>Let us explore QEDA capabilities by creating a simple PCB. This will be an abstract Wi-Fi adapter which uses ESP-07 module.</p>
 <p>We will use Ubuntu during demonstration but one may repeat following steps on any compatible operating system (with minor modifications).</p>
 <h2 id="prerequisites">Prerequisites</h2>
-<p>Be sure to have <a class="ext" href="https://nodejs.org/" target="_blank">Node.js</a><!--_--> installed. Good command to check it is:</p>
+<p>Be sure to have <a class="ext" href="https://nodejs.org/" target="_blank">Node.js</a> installed. Good command to check it is:</p>
 <pre><code class="lang-bash">node --version
 </code></pre>
 <p>You should see something like this:</p>
@@ -13,7 +13,7 @@ v6.4.0
 <p>If there is only <code>nodejs</code> command instead of <code>node</code> in your distribution you have to create symlink:</p>
 <pre><code class="lang-bash">sudo ln -s `which nodejs` /usr/bin/node
 </code></pre>
-<p>Also fresh version of <a class="ext" href="http://kicad-pcb.org" target="_blank">KiCad EDA</a><!--_--> should be installed.  </p>
+<p>Also fresh version of <a class="ext" href="http://kicad-pcb.org/" target="_blank">KiCad EDA</a> should be installed.  </p>
 <h2 id="installation">Installation</h2>
 <p>The simplest way to install QEDA tools is to use NPM:</p>
 <pre><code class="lang-bash">sudo npm install -g qeda
@@ -32,7 +32,7 @@ cd wifi-adapter
 </code></pre>
 <h2 id="step-1-apply-manufacturer-s-design-rules">Step 1: Apply manufacturer&#39;s design rules</h2>
 <p>Any PCB manufacturer has some limitations specified by production capabilities.</p>
-<p>For example let&#39;s explore <a class="ext" href="https://oshpark.com/guidelines" target="_blank">OSH Park guidelines</a><!--_-->:</p>
+<p>For example let&#39;s explore <a class="ext" href="https://oshpark.com/guidelines" target="_blank">OSH Park guidelines</a>:</p>
 <ul>
 <li>6 mil (<strong>0.2 mm</strong>) minimum spacing</li>
 <li>13 mil (<strong>0.4 mm</strong>) minimum drill size</li>
@@ -75,13 +75,13 @@ qeda add hirose/df13a-6p-1.25h
 </code></pre>
 <p>You may examine their definitions if you are interested in:</p>
 <ul>
-<li><a class="ext" href="https://github.com/qeda/library/blob/master/espressif/esp-07.yaml" target="_blank">Espressif ESP-07</a><!--_--></li>
-<li><a class="ext" href="https://github.com/qeda/library/blob/master/capacitor/c0603.yaml" target="_blank">Capacitor C0603</a><!--_--></li>
-<li><a class="ext" href="https://github.com/qeda/library/blob/master/capacitor/c1210.yaml" target="_blank">Capacitor C1210</a><!--_--></li>
-<li><a class="ext" href="https://github.com/qeda/library/blob/master/resistor/r0603.yaml" target="_blank">Resistor R0603</a><!--_--></li>
-<li><a class="ext" href="https://github.com/qeda/library/blob/master/misc/tp-th-1.yaml" target="_blank">Misc TP-TH-1</a><!--_--></li>
-<li><a class="ext" href="https://github.com/qeda/library/blob/master/ti/lm1117mpx.yaml" target="_blank">TI LM1117MPX</a><!--_--></li>
-<li><a class="ext" href="https://github.com/qeda/library/blob/master/hirose/df13a-6p-1.25h.yaml" target="_blank">Hirose DF13A-6P-1.25H</a><!--_--></li>
+<li><a class="ext" href="https://github.com/qeda/library/blob/master/espressif/esp-07.yaml" target="_blank">Espressif ESP-07</a></li>
+<li><a class="ext" href="https://github.com/qeda/library/blob/master/capacitor/c0603.yaml" target="_blank">Capacitor C0603</a></li>
+<li><a class="ext" href="https://github.com/qeda/library/blob/master/capacitor/c1210.yaml" target="_blank">Capacitor C1210</a></li>
+<li><a class="ext" href="https://github.com/qeda/library/blob/master/resistor/r0603.yaml" target="_blank">Resistor R0603</a></li>
+<li><a class="ext" href="https://github.com/qeda/library/blob/master/misc/tp-th-1.yaml" target="_blank">Misc TP-TH-1</a></li>
+<li><a class="ext" href="https://github.com/qeda/library/blob/master/ti/lm1117mpx.yaml" target="_blank">TI LM1117MPX</a></li>
+<li><a class="ext" href="https://github.com/qeda/library/blob/master/hirose/df13a-6p-1.25h.yaml" target="_blank">Hirose DF13A-6P-1.25H</a></li>
 </ul>
 <p>If there is no element needed in repository you can add new one. Please refer to <a href="/core/component">Component description</a> section for details.</p>
 <p>Some power and ground symbols are to be added too:</p>
@@ -137,5 +137,5 @@ Now we have two new subdirectories:</p>
 <p>Now we can generate gerber files and make an order of our new PCB.</p>
 <p>That&#39;s all!</p>
 <h2 id="source-files">Source files</h2>
-<p><strong>GitHub</strong>: <a class="ext" href="https://github.com/qeda/examples/tree/master/wifi-adapter" target="_blank">https://github.com/qeda/examples/tree/master/wifi-adapter</a><!--_--></p>
-</body></html>
+<p><strong>GitHub</strong>: <a class="ext" href="https://github.com/qeda/examples/tree/master/wifi-adapter" target="_blank">https://github.com/qeda/examples/tree/master/wifi-adapter</a></p>
+</div></div></body><link href="/css/qeda.min.css" rel="stylesheet"></html>

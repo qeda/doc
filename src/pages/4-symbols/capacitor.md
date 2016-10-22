@@ -1,4 +1,4 @@
-Capacitor schematic symbol
-==========================
+Capacitor
+=========
 
 _To be written._
