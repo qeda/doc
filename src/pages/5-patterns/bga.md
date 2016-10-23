@@ -6,7 +6,7 @@ housing:
   pattern: BGA
 ```
 
-<center><img src="/img/patterns/bga.svg" width="60%" alt="BGA Package"></center>
+<center><img src="/img/patterns/bga.svg" width="800" alt="BGA Package"></center>
 
 Required parameters
 -------------------
