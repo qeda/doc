@@ -6,13 +6,13 @@ html(lang="en")
 
   body.guides.index
     main.container
+      article.chapter
+        | !{body}
       aside.sidebar
         label(for='toc-toggle')
           | Table of Contents
           span(for='toc-toggle' class='visually-hidden') toggle
         .toc-container
           | !{toc}
-      article.chapter
-        | !{body}
 
   link(href='/css/qeda.min.css', rel='stylesheet')

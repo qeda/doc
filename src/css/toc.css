@@ -6,13 +6,13 @@
 }
 @media screen and (min-width: 53.75em) {
 	.sidebar {
-		float: left;
+		float: right;
 		display: block;
-		margin-right: 2.35765%;
+		margin-left: 2.35765%;
 		width: 22.49666%;
 		border-bottom: 0;
-		border-right: 1px solid #DDD;
-		padding: 3em 1.618em 3em 0;
+		border-left: 1px solid #DDD;
+		padding: 3em 0 3em 1.618em;
 	}
 	.sidebar:last-child {
 		margin-right:0
@@ -57,7 +57,7 @@ label[for="toc-toggle"] {
 .toc-container {
 	border-top:1px solid #DDD;
 	overflow:hidden;
-	display:none
+	/*display:none*/
 }
 .toc-toggle:checked ~ .toc-container {
 	display:block

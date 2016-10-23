@@ -3,10 +3,10 @@ article {
 }
 @media screen and (min-width: 53.75em) {
 	article {
-		float:left;
-		display:block;
-		margin-right:2.35765%;
-		width:75.14568%
+		float: left;
+		display: block;
+		margin-left: 2.35765%;
+		width: 75.14568%;
 	}
 	article:last-child {
 		margin-right:0
