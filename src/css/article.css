@@ -10,7 +10,7 @@ article ol {
 	list-style-type: decimal;
 	margin-bottom: 1.5em;
 }
-@media screen and (min-width: 53.75em) {
+@media only screen and (min-width: 53.75em) {
   article {
     float: left;
     display: block;

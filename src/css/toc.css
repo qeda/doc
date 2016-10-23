@@ -3,7 +3,7 @@
   position: relative;
   z-index: 1;
 }
-@media screen and (min-width: 53.75em) {
+@media only screen and (min-width: 53.75em) {
   .sidebar {
     float: right;
     display: block;
@@ -28,7 +28,7 @@
   margin-bottom: 0.375em;
   border-bottom: 1px solid #DDD;
 }
-@media screen and (min-width: 53.75em) {
+@media only screen and (min-width: 53.75em) {
   .toc-toggle {
     display: none;
   }
@@ -39,7 +39,7 @@
 .toc-toggle:checked ~ .toc-container {
   display:block
 }
-@media screen and (min-width: 53.75em) {
+@media only screen and (min-width: 53.75em) {
   .toc-container {
     display:block
   }
