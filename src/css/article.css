@@ -1,0 +1,23 @@
+article {
+	padding:3em 0
+}
+@media screen and (min-width: 53.75em) {
+	article {
+		float:left;
+		display:block;
+		margin-right:2.35765%;
+		width:75.14568%
+	}
+	article:last-child {
+		margin-right:0
+	}
+}
+article h2,article h3 {
+	margin-top:1.5em
+}
+article hr+h2,article hr+h3 {
+	margin-top:0
+}
+article h4 {
+	margin-top:1.5em
+}
