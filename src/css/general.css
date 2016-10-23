@@ -1,24 +1,21 @@
-label {
-  display: block;
+*,*::after,*::before {
+  box-sizing:inherit
+}
+body {
+  -webkit-font-feature-settings: "kern", "liga", "pnum";
+  -moz-font-feature-settings: "kern", "liga", "pnum";
+  -ms-font-feature-settings: "kern", "liga", "pnum";
+  font-feature-settings: "kern", "liga", "pnum";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.375em;
+  line-height: 1.5
 }
 ul,ol {
   list-style-type: none;
   margin: 0;
   padding: 0;
-}
-dl {
-  margin-bottom: 0.75em;
-}
-dl dt {
-  font-weight: bold;
-  margin-top: 0.75em;
-}
-dl dd {
-  margin: 0;
 }
 table {
   -webkit-font-feature-settings: "kern", "liga", "tnum";
@@ -46,17 +43,6 @@ th,td {
 }
 tr,td,th {
   vertical-align: middle;
-}
-body {
-  -webkit-font-feature-settings: "kern", "liga", "pnum";
-  -moz-font-feature-settings: "kern", "liga", "pnum";
-  -ms-font-feature-settings: "kern", "liga", "pnum";
-  font-feature-settings: "kern", "liga", "pnum";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
-  font-size: 1rem;
-  line-height: 1.5
 }
 h1,h2,h3,h4,h5,h6 {
   font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
@@ -127,9 +113,6 @@ strong {
 html {
   box-sizing:border-box
 }
-*,*::after,*::before {
-  box-sizing:inherit
-}
 @media screen and (min-width: 53.75em) {
   .container {
     display:flex
@@ -180,7 +163,10 @@ pre {
   background-color: #F5F5F5;
   border: 1px solid #CCC;
   border-radius: 4px;
-  word-break: break-all;
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
   word-wrap: break-word;
 }
 pre>code {
