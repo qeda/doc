@@ -5,6 +5,19 @@ html(lang="en")
     link(rel='shortcut icon' href='/img/favicon.ico' type='image/x-icon' sizes='16x16 24x24 32x32 64x64 128x128 256x256 512x512')
 
   body
+    .nav-main
+      .wrap
+        a.nav-home(href='/')
+          img.nav-logo(src='/img/logo.svg' width=60)
+          | <strong>QEDA</strong> Documentation
+        .nav-lists
+          ul.nav-site.nav-site-internal
+            li
+              a(href='http://qeda.org/') Back to main site
+          ul.nav-site.nav-site-external
+            li
+              a(href='https://github.com/qeda/doc') GitHub
+
     main.container
       article.chapter
         .toc-toggle#top

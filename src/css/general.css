@@ -1,6 +1,9 @@
 *,*::after,*::before {
   box-sizing:inherit
 }
+html {
+  box-sizing:border-box
+}
 body {
   -webkit-font-feature-settings: "kern", "liga", "pnum";
   -moz-font-feature-settings: "kern", "liga", "pnum";
@@ -10,7 +13,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   font-size: 1rem;
-  line-height: 1.5
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
 }
 ul,ol {
   list-style-type: none;
@@ -101,17 +106,14 @@ hr {
   margin:1.5em 0
 }
 img {
-  margin:0;
-  max-width:100%
+  margin: 0;
+  max-width: 100%;
 }
 em {
   font-style:italic
 }
 strong {
   font-weight:bold
-}
-html {
-  box-sizing:border-box
 }
 @media screen and (min-width: 53.75em) {
   .container {
@@ -124,9 +126,9 @@ html {
   }
 }
 .container {
-  margin-left:auto;
-  margin-right:auto;
-  padding:0 1em
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em 1em;
 }
 .container::after {
   clear:both;
