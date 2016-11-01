@@ -16,12 +16,12 @@ Required parameters
 | `bodyLength` | dimension | Package body length (key position in top left) |
 | `bodyWidth` | dimension | Package body width (key position in top left) |
 | `columnCount` | integer | Count of columns |
-| `columnPitch` | float | Pitch between columns.<br/>Not needed if `pitch` parameter defined |
+| `horizontalPitch` | float | Pitch between columns.<br/>Not needed if `pitch` parameter defined |
 | `height` | dimension | Overall package height |
 | `leadDiameter` | dimension | Diameter of lead (ball) |
 | `pitch` | float | Pitch between leads (when equal for rows and columns).<br/>Not needed if both `columnPitch` and `rowPitch` parameters defined |
 | `rowCount` | integer | Count of rows |
-| `rowPitch` | float | Pitch between rows.<br/>Not needed if `pitch` parameter defined |
+| `verticalPitch` | float | Pitch between rows.<br/>Not needed if `pitch` parameter defined |
 
 Optional parameters
 -------------------
