@@ -7,7 +7,7 @@
 </code></pre>
 <p>You should see something like this:</p>
 <pre class="terminal">
-v6.4.0
+v7.3.0
 </pre>
 
 <p>If there is only <code>nodejs</code> command instead of <code>node</code> in your distribution you have to create symlink:</p>
@@ -23,7 +23,7 @@ v6.4.0
 </code></pre>
 <p>If you see something like ...</p>
 <p><pre class="terminal">
-QEDA v0.2.3
+QEDA v0.2.11
 </pre>
 ... we can continue.</p>
 <p>Create directory for our future PCB project:</p>
@@ -65,7 +65,7 @@ qeda config pattern.minimum.ringWidth 0.2
 </code></pre>
 <h2 id="step-3-adding-elements">Step 3: Adding elements</h2>
 <p>Elements used are already in <a href="/library/">repository</a> so we need only to add them:</p>
-<pre><code class="lang-bash">qeda add espressif/esp-07
+<pre><code class="lang-bash">qeda add module/esp-07
 qeda add capacitor/c0603
 qeda add capacitor/c1210
 qeda add resistor/r0603
@@ -75,7 +75,7 @@ qeda add hirose/df13a-6p-1.25h
 </code></pre>
 <p>You may examine their definitions if you are interested in:</p>
 <ul>
-<li><a class="ext" href="https://github.com/qeda/library/blob/master/espressif/esp-07.yaml" target="_blank">Espressif ESP-07</a></li>
+<li><a class="ext" href="https://github.com/qeda/library/blob/master/module/esp-07.yaml" target="_blank">Module ESP-07</a></li>
 <li><a class="ext" href="https://github.com/qeda/library/blob/master/capacitor/c0603.yaml" target="_blank">Capacitor C0603</a></li>
 <li><a class="ext" href="https://github.com/qeda/library/blob/master/capacitor/c1210.yaml" target="_blank">Capacitor C1210</a></li>
 <li><a class="ext" href="https://github.com/qeda/library/blob/master/resistor/r0603.yaml" target="_blank">Resistor R0603</a></li>

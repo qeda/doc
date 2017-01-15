@@ -17,7 +17,7 @@ node --version
 You should see something like this:
 
 <pre class="terminal">
-v6.4.0
+v7.3.0
 </pre>
 
 If there is only `nodejs` command instead of `node` in your distribution you have to create symlink:
@@ -45,7 +45,7 @@ qeda --version
 
 If you see something like ...
 <pre class="terminal">
-QEDA v0.2.3
+QEDA v0.2.11
 </pre>
 ... we can continue.
 
@@ -115,7 +115,7 @@ Step 3: Adding elements
 Elements used are already in [repository](/library/) so we need only to add them:
 
 ```bash
-qeda add espressif/esp-07
+qeda add module/esp-07
 qeda add capacitor/c0603
 qeda add capacitor/c1210
 qeda add resistor/r0603
@@ -126,7 +126,7 @@ qeda add hirose/df13a-6p-1.25h
 
 You may examine their definitions if you are interested in:
 
-- [Espressif ESP-07](https://github.com/qeda/library/blob/master/espressif/esp-07.yaml)
+- [Module ESP-07](https://github.com/qeda/library/blob/master/module/esp-07.yaml)
 - [Capacitor C0603](https://github.com/qeda/library/blob/master/capacitor/c0603.yaml)
 - [Capacitor C1210](https://github.com/qeda/library/blob/master/capacitor/c1210.yaml)
 - [Resistor R0603](https://github.com/qeda/library/blob/master/resistor/r0603.yaml)

@@ -6,7 +6,7 @@ housing:
   pattern: CAE
 ```
 
-<!--<center><img src="/img/doc/patterns/cae.svg" width="60%" alt="CAE Package"></center>-->
+<center><img src="/img/patterns/cae/cae.svg" width="700" alt="CAE Package"></center>
 
 Required parameters
 -------------------
@@ -14,12 +14,14 @@ Required parameters
 | Name | Type | Description |
 |------|------|-------------|
 | `bodyDiameter` | dimension | Body cylinder diameter |
-| `bodyLength` | dimension | Package base length (key position at top) |
-| `bodyWidth` | dimension | Package base width (key position at top) |
+| `bodyLength` | dimension | Package base length |
+| `bodyWidth` | dimension | Package base width |
 | `height` | dimension | Overall package height |
 | `leadLength` | dimension | Length of lead |
 | `leadSpace` | dimension | Space between leads |
 | `leadWidth` | dimension | Width of lead |
+
+<center><img src="/img/patterns/cae/cae_pattern.svg" width="700" alt="CAE Pattern"></center>
 
 Optional parameters
 -------------------
@@ -27,7 +29,7 @@ Optional parameters
 | Name | Type | Description |
 |------|------|-------------|
 | `padDistance` | float | Distance between pad centers recommended by component manufacturer.<br/>Not needed if `padSpace` or `padSpan` parameter defined |
-| `padHeight` | float | Width of pad recommended by component manufacturer |
+| `padHeight` | float | Height of pad recommended by component manufacturer |
 | `padSpan` | float | Distance between opposite pad edges recommended by component manufacturer.<br/>Not needed if `padDistance` or `padSpace` parameter defined |
 | `padSpace` | float | Space between pads recommended by component manufacturer.<br/>Not needed if `padDistance` or `padSpan` parameter defined |
 | `padWidth` | float | Width of pad recommended by component manufacturer |
@@ -48,3 +50,5 @@ housing:
   leadLength: 1.3-1.7
   leadSpace: 0.4-0.8
 ```
+
+<center><img src="/img/patterns/cae/cae-a.png" width="1059" alt="Capacitor CAE-A"></center>

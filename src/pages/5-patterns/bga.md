@@ -6,7 +6,7 @@ housing:
   pattern: BGA
 ```
 
-<center><img src="/img/patterns/bga.svg" width="800" alt="BGA Package"></center>
+<center><img src="/img/patterns/bga/bga.svg" width="800" alt="BGA Package"></center>
 
 Required parameters
 -------------------
@@ -53,3 +53,5 @@ housing:
   leadDiameter: 0.25-0.35
   leadCount: 76
 ```
+
+<center><img src="/img/patterns/bga/ad9393.png" width="1071" alt="Analog Devices AD9393"></center>
