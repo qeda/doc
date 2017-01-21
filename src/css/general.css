@@ -164,6 +164,7 @@ pre {
   background-color: #F5F5F5;
   border: 1px solid #CCC;
   border-radius: 4px;
+  font-family:Menlo, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", Courier, monospace;
   white-space: pre-wrap;       /* css-3 */
   white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
   white-space: -pre-wrap;      /* Opera 4-6 */
