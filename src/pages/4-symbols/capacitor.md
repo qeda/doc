@@ -18,7 +18,7 @@ Optional parameters
 
 | Option | Description | Symbol |
 |--------|-------------|--------|
-| `polarized` | Polarized capacitor | <img src="/img/symbols/capacitor/polarized.svg" width="60" alt="Polarized Capacitor"> |
+| `polarized` | Polarized capacitor | <img src="/img/symbols/capacitor/polarized.svg" width="60" alt="Polarized capacitor"> |
 
 Real example
 ------------

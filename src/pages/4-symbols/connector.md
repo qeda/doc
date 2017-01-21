@@ -24,11 +24,11 @@ Optional parameters
 
 | Option | Description | Symbol |
 |--------|-------------|--------|
-| `ccw` | Counter-clockwise pin numbering | <img src="/img/symbols/connector/ccw.svg" width="128" alt="Counter-Clockwise Connector"> |
-| `cw` | Clockwise pin numbering | <img src="/img/symbols/connector/cw.svg" width="128" alt="Clockwise Connector"> |
-| `mirror` | Mirror symbol | <img src="/img/symbols/connector/mirror.svg" width="128" alt="Mirrored Connector"> |
-| `single` | Single sided symbol | <img src="/img/symbols/connector/single.svg" width="74" alt="Single-Sided Connector"> |
-| `square-pin` | Square pin shape | <img src="/img/symbols/connector/square-pin.svg" width="128" alt="Square Pin Connector"> |
+| `ccw` | Counter-clockwise pin numbering | <img src="/img/symbols/connector/ccw.svg" width="128" alt="Counter-clockwise connector"> |
+| `cw` | Clockwise pin numbering | <img src="/img/symbols/connector/cw.svg" width="128" alt="Clockwise connector"> |
+| `mirror` | Mirror symbol | <img src="/img/symbols/connector/mirror.svg" width="128" alt="Mirrored connector"> |
+| `single` | Single sided symbol | <img src="/img/symbols/connector/single.svg" width="74" alt="Single-sided connector"> |
+| `square-pin` | Square pin shape | <img src="/img/symbols/connector/square-pin.svg" width="128" alt="Square pin connector"> |
 
 Real example
 ------------
