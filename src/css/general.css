@@ -149,7 +149,6 @@ code {
   background-color: #F5F5F5;
   border-radius:3px;
   font-family:Menlo, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", Courier, monospace;
-  font-size:0.9em;
   padding:0.2em 0.5em;
   margin:0 0.1em;
   -webkit-font-feature-settings:"kern", "tnum";
@@ -175,7 +174,6 @@ pre>code {
   padding: 0;
 }
 pre.terminal {
-  font-size: 0.9em;
   background-color: #091D38;
   border-color: black;
   color: white;

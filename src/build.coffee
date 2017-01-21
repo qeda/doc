@@ -19,10 +19,8 @@ pagesTree = (dir, tree) ->
       tree[key] = pagePath
   tree
 
-pagesList = (tree, dir, level, list) ->
-  list ?= []
-  level ?= 0
-
+pageTreeBranch = (tree, dir, level, list) ->
+  childs = []
   for k, v of tree
     obj =
       path: if dir? then "#{dir}/#{k}" else k
@@ -31,12 +29,18 @@ pagesList = (tree, dir, level, list) ->
       obj.src = v.index
       obj.title = getTitle obj.src
       list.push obj
-      pagesList v, obj.path, obj.level, list
+      obj.childs = pageTreeBranch v, obj.path, obj.level, list
     else if k isnt 'index'
       obj.src = v
       obj.title = getTitle obj.src
       list.push obj
+      childs.push obj
 
+  childs
+
+pagesList = (tree, dir, level, list, childs) ->
+  list = []
+  pageTreeBranch tree, null, 0, list
   list
 
 #
@@ -73,7 +77,7 @@ tableOfContents = (currentPage, pages) ->
       number += numbers[i] + '.'
     classTag = "class=\"toc-level-#{page.level - 1}\""
     if page.level > level
-      toc += "<ol #{classTag}>" #uls[page.level]
+      toc += "<ol #{classTag}>"
     else if page.level < level
       toc += '</ol>'
     level = page.level
@@ -89,14 +93,20 @@ tableOfContents = (currentPage, pages) ->
 #
 # Render output file
 #
-render = (page, pages) -> #src, toc, dir) ->
+render = (page, pages) ->
   console.log "Rendering '#{page.path}/index.html'"
   if not fs.existsSync page.path
     fs.mkdirSync page.path
   pugRender = pug.compileFile 'src/template.pug'
+  pageBody = parseMarkdown page.src
+  if page.childs?
+    pageBody += '<h2>Contents</h2><ul>'
+    for child in page.childs
+      pageBody += "<li><a href=\"/#{child.path}/\">#{child.title}</a></li>"
+    pageBody += '</ul>'
   html = pugRender
     title: page.title
-    body: parseMarkdown page.src
+    body: pageBody
     toc: tableOfContents page, pages
   fd = fs.openSync "#{page.path}/index.html", 'w'
   fs.writeSync fd, html
