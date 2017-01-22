@@ -2,6 +2,22 @@
 <pre><code class="lang-yaml">schematic:
   symbol: FET
 </code></pre>
+<h2 id="pinout-restrictions">Pinout restrictions</h2>
+<ul>
+<li><strong>Gate</strong> pin name should begin with letter <code>G</code>. Example: <code>G</code>, <code>G1</code></li>
+<li><strong>Drive</strong> pin name should begin with letter <code>D</code>. Example: <code>D</code>, <code>D1</code></li>
+<li><strong>Source</strong> pin name should begin with letter <code>S</code>. Example: <code>S</code>, <code>S1</code></li>
+</ul>
+<p>Example:</p>
+<pre><code class="lang-yaml">pinout:
+  G1: 2
+  D1: 7, 8
+  S1: 1
+
+  G2: 4
+  D2: 5, 6
+  S2: 3
+</code></pre>
 <h2 id="optional-parameters">Optional parameters</h2>
 <table>
 <thead>

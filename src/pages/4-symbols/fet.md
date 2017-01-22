@@ -6,6 +6,26 @@ schematic:
   symbol: FET
 ```
 
+Pinout restrictions
+-------------------
+
+* **Gate** pin name should begin with letter `G`. Example: `G`, `G1`
+* **Drive** pin name should begin with letter `D`. Example: `D`, `D1`
+* **Source** pin name should begin with letter `S`. Example: `S`, `S1`
+
+Example:
+
+```yaml
+pinout:
+  G1: 2
+  D1: 7, 8
+  S1: 1
+
+  G2: 4
+  D2: 5, 6
+  S2: 3
+```
+
 Optional parameters
 -------------------
 
