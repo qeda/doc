@@ -12,6 +12,7 @@ Pinout restrictions
 * **Gate** pin name should begin with letter `G`. Example: `G`, `G1`
 * **Drive** pin name should begin with letter `D`. Example: `D`, `D1`
 * **Source** pin name should begin with letter `S`. Example: `S`, `S1`
+* If there are any other pins then a symbol with enclosure and annotated pins will be generated.
 
 Example:
 
@@ -31,7 +32,11 @@ Optional parameters
 
 | Name | Type | Description |
 |------|------|-------------|
+| `bottom` | list | List of pins on the **bottom** side of symbol enclosure |
+| `left` | list | List of pins on the **left** side of symbol enclosure |
 | `options` | list | Symbol options (see below) |
+| `right` | list | List of pins on the **right** side of symbol enclosure |
+| `top` | list | List of pins on the **top** side of symbol enclosure |
 
 `options`
 ---------

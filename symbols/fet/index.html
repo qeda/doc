@@ -7,6 +7,7 @@
 <li><strong>Gate</strong> pin name should begin with letter <code>G</code>. Example: <code>G</code>, <code>G1</code></li>
 <li><strong>Drive</strong> pin name should begin with letter <code>D</code>. Example: <code>D</code>, <code>D1</code></li>
 <li><strong>Source</strong> pin name should begin with letter <code>S</code>. Example: <code>S</code>, <code>S1</code></li>
+<li>If there are any other pins then a symbol with enclosure and annotated pins will be generated.</li>
 </ul>
 <p>Example:</p>
 <pre><code class="lang-yaml">pinout:
@@ -29,9 +30,29 @@
 </thead>
 <tbody>
 <tr>
+<td><code>bottom</code></td>
+<td>list</td>
+<td>List of pins on the <strong>bottom</strong> side of symbol enclosure</td>
+</tr>
+<tr>
+<td><code>left</code></td>
+<td>list</td>
+<td>List of pins on the <strong>left</strong> side of symbol enclosure</td>
+</tr>
+<tr>
 <td><code>options</code></td>
 <td>list</td>
 <td>Symbol options (see below)</td>
+</tr>
+<tr>
+<td><code>right</code></td>
+<td>list</td>
+<td>List of pins on the <strong>right</strong> side of symbol enclosure</td>
+</tr>
+<tr>
+<td><code>top</code></td>
+<td>list</td>
+<td>List of pins on the <strong>top</strong> side of symbol enclosure</td>
 </tr>
 </tbody>
 </table>
