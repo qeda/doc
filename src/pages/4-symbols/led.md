@@ -6,6 +6,8 @@ schematic:
   symbol: LED
 ```
 
+This is just a shortcut for [Diode symbol](/symbols/diode/) with `led` option. 
+
 Real example
 ------------
 
