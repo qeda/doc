@@ -2,6 +2,43 @@
 <pre><code class="lang-yaml">schematic:
   symbol: pushbutton
 </code></pre>
+<h2 id="pinout-restrictions">Pinout restrictions</h2>
+<ul>
+<li>Generally there is no need to define <code>pinout</code> section when we have an element with only two pins.</li>
+<li>If number of pins is more than two then a symbol with enclosure and named pins will be generated.</li>
+</ul>
+<h2 id="optional-parameters">Optional parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bottom</code></td>
+<td>list</td>
+<td>List of pins on the <strong>bottom</strong> side of symbol enclosure</td>
+</tr>
+<tr>
+<td><code>left</code></td>
+<td>list</td>
+<td>List of pins on the <strong>left</strong> side of symbol enclosure</td>
+</tr>
+<tr>
+<td><code>right</code></td>
+<td>list</td>
+<td>List of pins on the <strong>right</strong> side of symbol enclosure</td>
+</tr>
+<tr>
+<td><code>top</code></td>
+<td>list</td>
+<td>List of pins on the <strong>top</strong> side of symbol enclosure</td>
+</tr>
+</tbody>
+</table>
 <h2 id="real-example">Real example</h2>
 <p><a class="ext" href="https://github.com/qeda/library/blob/master/ck/kmr2.yaml" target="_blank">CK KMR2</a>:</p>
 <pre><code class="lang-yaml">schematic:

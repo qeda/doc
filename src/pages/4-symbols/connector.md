@@ -13,11 +13,11 @@ Optional parameters
 
 | Name | Type | Description |
 |------|------|-------------|
-| `bottom` | list | List of pins on the bottom side of symbol |
-| `left` | list | List of pins on the left side of symbol |
+| `bottom` | list | List of pins on the **bottom** side of symbol |
+| `left` | list | List of pins on the **left** side of symbol |
 | `options` | list | Symbol options (see below) |
-| `right` | list | List of pins on the right side of symbol |
-| `top` | list | List of pins on the top side of symbol |
+| `right` | list | List of pins on the **right** side of symbol |
+| `top` | list | List of pins on the **top** side of symbol |
 
 `options`
 ---------
