@@ -31,9 +31,9 @@ Optional parameters
 
 | Option | Description | Symbol |
 |--------|-------------|--------|
-| `igbt` | IGBT | <img src="/img/symbols/transistor/igbt.svg" width="92" alt="IGBT"> |
-| `npn` | NPN | <img src="/img/symbols/transistor/npn.svg" width="92" alt="NPN"> |
-| `pnp` |  PNP | <img src="/img/symbols/transistor/pnp.svg" width="92" alt="PNP"> |
+| `igbt` | Insulated-gate bipolar transistor | <img src="/img/symbols/transistor/igbt.svg" width="92" alt="Insulated-gate bipolar transistor"> |
+| `npn` | NPN transistor | <img src="/img/symbols/transistor/npn.svg" width="92" alt="NPN transistor"> |
+| `pnp` |  PNP transistor | <img src="/img/symbols/transistor/pnp.svg" width="92" alt="PNP transistor"> |
 
 Real example
 ------------
