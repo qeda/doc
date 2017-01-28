@@ -12,7 +12,7 @@ Pinout restrictions
 * Generally there is no need to define `pinout` section when we have an element with only two pins.
 * If there is `pinout` section then some naming conventions are to be respected.
 * **Anode** pin name should begin with letter `A`. Example: `A`, `A1`
-* **Cathode** pin name should begin with letter `C` or `K`. Example: `K`, `C1`
+* **Cathode** pin name should begin with letter `C`. Example: `C`, `C1`
 * There may be **not connected** pin(s) whose name should begin with `NC`. Example: `NC`, `NC1`
 * If there are any other pins then a symbol with enclosure and annotated pins will be generated.
 

@@ -2,6 +2,15 @@
 <pre><code class="lang-yaml">schematic:
   symbol: capacitor
 </code></pre>
+<h2 id="pinout-restrictions">Pinout restrictions</h2>
+<ul>
+<li>Generally there is no need to define <code>pinout</code> section when we have an element with only two pins.</li>
+<li>If there is <code>pinout</code> section then some naming conventions are to be respected.</li>
+<li><strong>Left</strong> side pin name should begin with letter <code>L</code>. Example: <code>L</code>, <code>L1</code></li>
+<li><strong>Right</strong> side pin name should begin with letter <code>R</code>. Example: <code>R</code>, <code>R1</code></li>
+<li>There may be <strong>not connected</strong> pin(s) whose name should begin with <code>NC</code>. Example: <code>NC</code>, <code>NC1</code></li>
+<li>If there are any other pins then a symbol with enclosure and annotated pins will be generated.</li>
+</ul>
 <h2 id="optional-parameters">Optional parameters</h2>
 <table>
 <thead>

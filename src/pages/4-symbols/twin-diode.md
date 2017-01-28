@@ -10,8 +10,8 @@ Pinout restrictions
 -------------------
 
 * **Anode** pin names should be either `A`, `A1`, `A2`, `A3`.
-* **Cathode** pin names should be either `C`, `C1, `C2` or `K`, `K1`, `K2`.
-* There are also **anode-cathode** pins with names either `AC`, `CA`, or `AK`, `KA`.
+* **Cathode** pin names should be either `C`, `C1, `C2`.
+* There are also **anode-cathode** pins with names either `AC`, `CA`.
 * If there are any other pins then a symbol with enclosure and annotated pins will be generated.
 
 <center><img class="spaced" src="/img/symbols/twin-diode/a-ca-c.svg" width="156" alt="A-CA-C twin diode"></center>
