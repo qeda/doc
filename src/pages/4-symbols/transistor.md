@@ -31,19 +31,24 @@ Optional parameters
 
 | Option | Description | Symbol |
 |--------|-------------|--------|
-| `igbt` | Insulated-gate bipolar transistor | <img src="/img/symbols/transistor/igbt.svg" width="96" alt="Insulated-gate bipolar transistor"> |
+| `igbt` | IGBT | <img src="/img/symbols/transistor/igbt.svg" width="92" alt="IGBT"> |
 | `npn` | NPN | <img src="/img/symbols/transistor/npn.svg" width="92" alt="NPN"> |
 | `pnp` |  PNP | <img src="/img/symbols/transistor/pnp.svg" width="92" alt="PNP"> |
 
 Real example
 ------------
 
-[IRF IRFL014N](https://github.com/qeda/library/blob/master/irf/irfl014n.yaml):
+[NXP BC846](https://github.com/qeda/library/blob/master/nxp/bc846.yaml):
 
 ```yaml
+pinout:
+  B: 1
+  E: 2
+  C: 3
+
 schematic:
-  symbol: FET
-  options: n, diode
+  symbol: transistor
+  options: npn
 ```
 
-<center><img src="/img/symbols/fet/irfl014n.svg" width="110" alt="IRF IRFL014N"></center>
+<center><img src="/img/symbols/transistor/bc846.svg" width="92" alt="NXP BC846"></center>
