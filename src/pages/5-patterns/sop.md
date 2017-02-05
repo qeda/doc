@@ -34,7 +34,6 @@ Optional parameters
 | `tabLength` | dimension | Length of thermal tab |
 | `tabWidth` | dimension | Width of thermal tab |
 
-
 Available outlines
 ------------------
 

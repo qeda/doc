@@ -6,6 +6,8 @@ housing:
   pattern: BGA
 ```
 
+**Note:** Pins not defined in pinout will skipped on land pattern too.
+
 <center><img src="/img/patterns/bga/bga.svg" width="800" alt="BGA Package"></center>
 
 Required parameters
