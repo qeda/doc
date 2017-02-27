@@ -332,28 +332,34 @@ qeda ground earth/GNDE
 <td>Line width for drawing in silkscreen layer</td>
 </tr>
 <tr>
+<td><nobr><code>pattern.maximum.cornerRadius</code></nobr></td>
+<td>float (mm)</td>
+<td>0.2</td>
+<td>Maximum pad corner radius.<br/> Applied only when <code>pattern.smoothPadCorners</code> is set to <code>true</code></td>
+</tr>
+<tr>
 <td><nobr><code>pattern.minimum.drillDiameter</code></nobr></td>
 <td>float (mm)</td>
 <td>0.2</td>
-<td>Minimal drill diameter (according to PCB manufacturer capabilities)</td>
+<td>Minimum drill diameter (according to PCB manufacturer capabilities)</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.minimum.maskWidth</code></nobr></td>
 <td>float (mm)</td>
 <td>0.2</td>
-<td>Minimal mask strip width (according to PCB manufacturer capabilities).<br/>Has higher priority over <nobr><code>pattern.clearance.padToMask</code></nobr> parameter</td>
+<td>Minimum mask strip width (according to PCB manufacturer capabilities).<br/>Has higher priority over <nobr><code>pattern.clearance.padToMask</code></nobr> parameter</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.minimum.ringWidth</code></nobr></td>
 <td>float (mm)</td>
 <td>0.2</td>
-<td>Minimal ring width for vias and through-hole pads (according to PCB manufacturer capabilities)</td>
+<td>Minimum ring width for vias and through-hole pads (according to PCB manufacturer capabilities)</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.minimum.spaceForIron</code></nobr></td>
 <td>float (mm)</td>
 <td>0</td>
-<td>Minimal space between lead and its pad edges</td>
+<td>Minimum space between lead and its pad edges</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.preferManufacturer</code></nobr></td>
@@ -368,10 +374,22 @@ qeda ground earth/GNDE
 <td>Shape of polarity mark (near to the first pad).<br/> Options: <code>&#39;dot&#39;</code></td>
 </tr>
 <tr>
+<td><nobr><code>pattern.ratio.cornerToWidth</code></nobr></td>
+<td>float</td>
+<td>0.25</td>
+<td>Pad&#39;s corner radius to its width ratio.<br/> Applied only when <code>pattern.smoothPadCorners</code> is set to <code>true</code></td>
+</tr>
+<tr>
 <td><nobr><code>pattern.ratio.padToHole</code></nobr></td>
 <td>float</td>
 <td>1.5</td>
 <td>Proportion for pad size calculation from hole diameter</td>
+</tr>
+<tr>
+<td><nobr><code>pattern.smoothPadCorners</code></nobr></td>
+<td>boolean</td>
+<td>false</td>
+<td>Replace rectangle pads by rounded rectangles.<br/> Parameters are set by <code>pattern.ratio.cornerToWidth</code> and <code>pattern.maximum.cornerRadius</code>.<br/><strong>Warning:</strong> Supported by nightly development build of KiCad only</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.style</code></nobr></td>

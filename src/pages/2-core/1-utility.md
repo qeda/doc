@@ -164,13 +164,16 @@ Land pattern related parameters:
 | <nobr>`pattern.lineWidth.courtyard`</nobr> | float (mm) | 0.05 | Line width for drawing in courtyard layer |
 | <nobr>`pattern.lineWidth.default`</nobr> | float (mm) | 0.2 | Default line width |
 | <nobr>`pattern.lineWidth.silkscreen`</nobr> | float (mm) | 0.12 | Line width for drawing in silkscreen layer |
-| <nobr>`pattern.minimum.drillDiameter`</nobr> | float (mm) | 0.2 | Minimal drill diameter (according to PCB manufacturer capabilities) |
-| <nobr>`pattern.minimum.maskWidth`</nobr> | float (mm) | 0.2 | Minimal mask strip width (according to PCB manufacturer capabilities).<br/>Has higher priority over <nobr>`pattern.clearance.padToMask`</nobr> parameter |
-| <nobr>`pattern.minimum.ringWidth`</nobr> | float (mm) | 0.2 | Minimal ring width for vias and through-hole pads (according to PCB manufacturer capabilities) |
-| <nobr>`pattern.minimum.spaceForIron`</nobr> | float (mm) | 0 | Minimal space between lead and its pad edges |
+| <nobr>`pattern.maximum.cornerRadius`</nobr> | float (mm) | 0.2 | Maximum pad corner radius.<br/> Applied only when `pattern.smoothPadCorners` is set to `true` |
+| <nobr>`pattern.minimum.drillDiameter`</nobr> | float (mm) | 0.2 | Minimum drill diameter (according to PCB manufacturer capabilities) |
+| <nobr>`pattern.minimum.maskWidth`</nobr> | float (mm) | 0.2 | Minimum mask strip width (according to PCB manufacturer capabilities).<br/>Has higher priority over <nobr>`pattern.clearance.padToMask`</nobr> parameter |
+| <nobr>`pattern.minimum.ringWidth`</nobr> | float (mm) | 0.2 | Minimum ring width for vias and through-hole pads (according to PCB manufacturer capabilities) |
+| <nobr>`pattern.minimum.spaceForIron`</nobr> | float (mm) | 0 | Minimum space between lead and its pad edges |
 | <nobr>`pattern.preferManufacturer`</nobr> | boolean | true | Prefer component manufacturer's dimensions rather than IPC-7351 standard while land pattern calculating |
 | <nobr>`pattern.polarityMark`</nobr> | string | 'dot' | Shape of polarity mark (near to the first pad).<br/> Options: `'dot'` |
+| <nobr>`pattern.ratio.cornerToWidth`</nobr> | float | 0.25 | Pad's corner radius to its width ratio.<br/> Applied only when `pattern.smoothPadCorners` is set to `true` |
 | <nobr>`pattern.ratio.padToHole`</nobr> | float | 1.5 | Proportion for pad size calculation from hole diameter |
+| <nobr>`pattern.smoothPadCorners`</nobr> | boolean | false | Replace rectangle pads by rounded rectangles.<br/> Parameters are set by `pattern.ratio.cornerToWidth` and `pattern.maximum.cornerRadius`.<br/>**Warning:** Supported by nightly development build of KiCad only |
 | <nobr>`pattern.style`</nobr> | string | 'default' | Pattern style.<br/> Options: `'default'` |
 | <nobr>`pattern.tolerance.default`</nobr> | float (mm) | 0.1 | Default size tolerance |
 | <nobr>`pattern.tolerance.fabrication`</nobr> | float (mm) | 0.1 | Fabrication tolerance (provided by component manufacturer) |
