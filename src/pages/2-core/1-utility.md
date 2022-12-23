@@ -125,7 +125,7 @@ General parameters:
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | <nobr>`connection.timeout`</nobr> | integer (ms) | 5000 | Maximum connection timeout for component description loading from [remote repository](/library/) |
-| `output` | string | 'kicad' | Output library format. The supported outputs are: `'kicad'`, `'geda'`, `'coraleda'`  |
+| `output` | string | 'kicad' | Output library format. The supported outputs are: `'kicad'`, `'kicad6'`, `'geda'`, `'coraleda'` |
 
 Schematic symbol related parameters:
 
