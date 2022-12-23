@@ -29,6 +29,7 @@ Optional parameters
 | `mirror` | Mirror symbol | <img src="/img/symbols/connector/mirror.svg" width="128" alt="Mirrored connector"> |
 | `single` | Single sided symbol | <img src="/img/symbols/connector/single.svg" width="74" alt="Single-sided connector"> |
 | `square-pin` | Square pin shape | <img src="/img/symbols/connector/square-pin.svg" width="128" alt="Square pin connector"> |
+| `no-pin` | No pin shape | <img src="/img/symbols/connector/no-pin.svg" width="128" alt="No pin connector"> |
 
 Real example
 ------------
